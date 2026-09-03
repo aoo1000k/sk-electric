@@ -25,7 +25,7 @@ def home():
     else:
         filtered_products = [p for p in electrical_products if p['category'] == selected_category]
         
-    return render_template('index.html', products=filtered_products, current_cat=selected_category)
+    return render_template('index.html', products=filtered_products, current_cat=selected_category, shop_name="ร้านไฟฟ้าแสงคูณ")
 
 if __name__ == '__main__':
     app.run(debug=False, use_reloader=False)
