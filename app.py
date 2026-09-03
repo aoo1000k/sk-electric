@@ -4,12 +4,12 @@ app = Flask(__name__)
 
 # เพิ่มหมวดหมู่ (category) ให้สินค้าแต่ละชิ้น เพื่อทำระบบตัวกรอง
 electrical_products = [
-    {"name": "สายไฟ THW 1x1.5 sq.mm. (100 เมตร)", "price": "478", "img": "/static/thw15.jpg", "category": "wire"},
-    {"name": "สายไฟ THW 1x2.5 sq.mm. (100 เมตร)", "price": "850", "img": "https://placehold.co", "category": "wire"},
+    {"name": "สายไฟ IEC01 (THW) 1x1.5 sq.mm. (100 เมตร)", "price": "478", "img": "/static/thw15.jpg", "category": "wire"},
+    {"name": "สายไฟ IEC01 (THW) 1x2.5 sq.mm. (100 เมตร)", "price": "850", "img": "https://placehold.co", "category": "wire"},
     {"name": "สายไฟ VAF 2x1.5 sq.mm. (100 เมตร)", "price": "1,200", "img": "https://placehold.co", "category": "wire"},
     {"name": "สายไฟ VAF 2x2.5 sq.mm. (100 เมตร)", "price": "1,800", "img": "https://placehold.co", "category": "wire"},
-    {"name": "สายไฟ NYY 1x1.5 sq.mm. (100 เมตร)", "price": "1,450", "img": "https://placehold.co", "category": "wire"},
-    {"name": "สายไฟ NYY 4x10 sq.mm. (ตัดเมตร)", "price": "280 / เมตร", "img": "https://placehold.co", "category": "wire"},
+    {"name": "สายไฟ NYY 1C 1x1.5 sq.mm. (100 เมตร)", "price": "1,450", "img": "https://placehold.co", "category": "wire"},
+    {"name": "สายไฟ NYY 4C 4x10 sq.mm. (ตัดเมตร)", "price": "280 / เมตร", "img": "https://placehold.co", "category": "wire"},
     {"name": "ท่อร้อยสายไฟ PVC ขนาด 1/2 นิ้ว (สีเหลือง)", "price": "45", "img": "https://placehold.co", "category": "pipe"},
     {"name": "เบรกเกอร์ 2P 20A (ช้าง/Panasonic)", "price": "120", "img": "https://placehold.co", "category": "breaker"}
 ]
