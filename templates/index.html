@@ -9,7 +9,30 @@
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <style>
+    <style>/* บังคับการแสดงผลบนหน้าจอมือถือ (ความกว้างจอไม่เกิน 768px) */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* ปรับให้แสดง 2 คอลัมน์ */
+        gap: 12px; /* ลดระยะห่างระหว่างกล่องสินค้า */
+        padding: 0 10px;
+    }
+    
+    .product-name {
+        font-size: 0.85rem; /* ลดขนาดชื่อสินค้าไม่ให้เบียดกัน */
+        height: auto; /* ปล่อยความสูงอิสระตามบรรทัด */
+    }
+    
+    .product-price {
+        font-size: 0.95rem; /* ย่อขนาดราคาลงเล็กน้อย */
+        margin-bottom: 8px;
+    }
+    
+    .line-btn {
+        font-size: 0.75rem; /* ลดขนาดตัวอักษรในปุ่มสั่งซื้อ */
+        padding: 8px 4px; /* ลดขนาดปุ่มให้พอดีกรอบ */
+    }
+}
+
         body {
             font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
             background-color: #FAF6F0; /* โทนสีครีมละมุนแบบมินิมอล */
