@@ -10,48 +10,46 @@
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <style>/* บังคับการแสดงผลบนหน้าจอมือถือ (ความกว้างจอไม่เกิน 768px) */
+    <style>
+        /* บังคับการแสดงผลบนหน้าจอมือถือ (ความกว้างจอไม่เกิน 768px) */
         body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/static/sk.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 300px; /* ปรับขนาดโลโก้พื้นหลัง */
-    opacity: 0.05; /* ปรับความจาง (0.05 คือจางมากๆ ให้พอมีมิติ) */
-    z-index: -1; /* ดันให้ไปอยู่หลังสุด */
-}
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/sk.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 300px;
+            opacity: 0.05;
+            z-index: -1;
+        }
 
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr)!important; /* ปรับให้แสดง 2 คอลัมน์ */
-        gap: 12px; /* ลดระยะห่างระหว่างกล่องสินค้า */
-        padding: 0 10px;
-    }
-    
-    .product-name {
-        font-size: 0.85rem; /* ลดขนาดชื่อสินค้าไม่ให้เบียดกัน */
-        height: auto; /* ปล่อยความสูงอิสระตามบรรทัด */
-    }
-    
-    .product-price {
-        font-size: 0.95rem; /* ย่อขนาดราคาลงเล็กน้อย */
-        margin-bottom: 8px;
-    }
-    
-    .line-btn {
-        font-size: 0.75rem; /* ลดขนาดตัวอักษรในปุ่มสั่งซื้อ */
-        padding: 8px 4px; /* ลดขนาดปุ่มให้พอดีกรอบ */
-    }
-}
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr)!important;
+                gap: 12px;
+                padding: 0 10px;
+            }
+            .product-name {
+                font-size: 0.85rem;
+                height: auto;
+            }
+            .product-price {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+            .line-btn {
+                font-size: 0.75rem;
+                padding: 8px 4px;
+            }
+        }
 
         body {
             font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
-            background-color: #FAF6F0; /* โทนสีครีมละมุนแบบมินิมอล */
+            background-color: #FAF6F0;
             margin: 0;
             padding: 0;
             color: #4A4A4A;
@@ -100,7 +98,7 @@
         .category-menu {
             display: flex;
             max-width: 1200px;
-            margin: 30px auto 20px auto;
+            margin: 30px auto 10px auto;
             padding: 0 20px;
             gap: 10px;
             overflow-x: auto;
@@ -117,7 +115,7 @@
             transition: all 0.2s ease;
         }
         .cat-btn:hover, .cat-btn.active {
-            background: #D9C3B0; /* สีน้ำตาลพาสเทลอ่อนเมื่อเลือก */
+            background: #D9C3B0;
             color: #2D2D2D;
         }
 
@@ -132,7 +130,7 @@
         }
         .product-card {
             background: #FFFFFF;
-            border-radius: 16px; /* ปรับมุมการ์ดให้โค้งมนดูนุ่มนวลขึ้น */
+            border-radius: 16px;
             padding: 12px;
             text-align: left;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
@@ -143,14 +141,14 @@
             transition: transform 0.2s ease;
         }
         .product-card:hover {
-            transform: translateY(-4px); /* ลูกเล่นขยับขึ้นเล็กน้อยตอนเมาส์ชี้ */
+            transform: translateY(-4px);
         }
         .product-card img {
             width: 100%;
             height: auto;
-            border-radius: 12px; /* ภาพโค้งมนเข้ากับการ์ด */
+            border-radius: 12px;
             object-fit: cover;
-            aspect-ratio: 1 / 1; /* กำหนดให้ภาพเป็นจัตุรัสแบบในรูปเป๊ะ ๆ */
+            aspect-ratio: 1 / 1;
         }
         .product-name {
             font-size: 0.95rem;
@@ -163,7 +161,7 @@
         }
         .product-price {
             font-size: 1.05rem;
-            color: #C58940; /* ปรับสีกระตุ้นยอดขายโทนน้ำตาลทองหรูๆ */
+            color: #C58940;
             font-weight: 600;
             margin-bottom: 12px;
         }
@@ -217,13 +215,12 @@
 
     <!-- หัวข้อใหญ่ -->
     <div class="header" style="display: flex; align-items: center; gap: 20px;">
-    <img src="/static/sk.jpg" alt="โลโก้ SK" style="width: 70px; height: 70px; border-radius: 12px;">
-    <div>
-        <h1 style="margin-bottom: 4px;">ร้านไฟฟ้าแสงคุณ</h1>
-        <div class="subtitle">ศูนย์รวมสายไฟ และอุปกรณ์ไฟฟ้ามาตรฐาน มอก. รายใหญ่รายย่อย</div>
+        <img src="/static/sk.jpg" alt="โลโก้ SK" style="width: 70px; height: 70px; border-radius: 12px;">
+        <div>
+            <h1 style="margin-bottom: 4px;">ร้านไฟฟ้าแสงคูณ</h1>
+            <div class="subtitle">ศูนย์รวมสายไฟ และอุปกรณ์ไฟฟ้ามาตรฐาน มอก. รายใหญ่รายย่อย</div>
+        </div>
     </div>
-</div>
-
 
     <!-- แถบข้อมูลบริการ -->
     <div class="info-bar">
@@ -240,24 +237,37 @@
         <a href="/?cat=breaker" class="cat-btn {% if current_cat == 'breaker' %}active{% endif %}">เบรกเกอร์</a>
     </div>
 
-    <!-- ตารางสินค้า Grid 4 คอลัมน์รูปแบบภาพจัตุรัสแบบในรูป -->
+    <!-- ช่องกรอกคำค้นหาสไตล์มินิมอล -->
+    <div style="max-width: 1200px; margin: 15px auto; padding: 0 20px;">
+        <input type="text" 
+               id="searchInput" 
+               placeholder="🔍 ค้นหาชื่อสินค้า / สายไฟ (เช่น vaf, thw, เบรกเกอร์)..." 
+               style="width: 100%; padding: 14px 20px; font-size: 1rem; font-family: inherit; border: 1px solid #ECE7E1; border-radius: 12px; background-color: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.01); box-sizing: border-box; outline: none; transition: border-color 0.2s;"
+               onfocus="this.style.borderColor='#D9C3B0'" 
+               onblur="this.style.borderColor='#ECE7E1'">
+    </div>
+
+    <!-- ตารางสินค้า Grid 4 คอลัมน์ -->
     <div class="product-grid">
         {% for product in products %}
-        <div class="product-card">
+        <div class="product-card" data-name="{{ product.name | lower }}">
             <div>
                 <img src="{{ product.img }}" alt="{{ product.name }}">
                 <div class="product-name">{{ product.name }}</div>
             </div>
             <div>
                 <div class="product-price">฿{{ product.price }}</div>
-                <a href="https://lin.ee/ShzPAq2" 
-                   target="_blank" 
-                   class="line-btn">
-                   🟢 สอบถาม/สั่งซื้อผ่าน LINE
+                <a href="https://lin.ee/ShzPAq2" target="_blank" class="line-btn">
+                    🟢 สอบถาม/สั่งซื้อผ่าน LINE
                 </a>
             </div>
         </div>
         {% endfor %}
+        
+        <!-- ข้อความแสดงเมื่อไม่พบสินค้า -->
+        <div id="no-product-message" style="display: none; text-align: center; padding: 40px; color: #8C8A87; font-size: 1rem; grid-column: 1 / -1;">
+            ❌ ไม่พบสินค้าที่คุณค้นหา ลองเปลี่ยนคำค้นหา หรือ <a href="https://lin.ee/ShzPAq2" target="_blank" style="color: #2ECC71; font-weight: 500; text-decoration: none;">สอบถามสินค้าทาง LINE</a> ได้เลยครับ
+        </div>
     </div>
 
     <!-- ส่วนท้ายเว็บระบุพิกัดร้านที่ปากช่อง -->
@@ -267,9 +277,8 @@
                 <h3>ติดต่อเรา</h3>
                 <p>📍 <strong>คลังสินค้า:</strong> อำเภอปากช่อง จังหวัดนครราชสีมา</p>
                 <a href="https://maps.app.goo.gl/eojMTLoHWLQGj4BZ7" target="_blank" style="display: inline-block; background-color: #4285F4; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; margin-top: 10px; font-weight: bold;">
-    📍 นำทางด้วย Google Maps
-</a>
-
+                    📍 นำทางด้วย Google Maps
+                </a>
                 <p>📞 <strong>เบอร์โทรศัพท์:</strong> 081-966-7878 (ติดต่อฝ่ายขาย)</p>
                 <p>⏰ <strong>เวลาทำการ:</strong> เปิดบริการทุกวันจันทร์-เสาร์ (08:00 - 17:00 น.)</p>
             </div>
@@ -281,6 +290,34 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript สำหรับระบบค้นหาแบบเรียลไทม์ -->
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            var searchTerm = e.target.value.toLowerCase().trim();
+            var productCards = document.querySelectorAll('.product-grid .product-card');
+            var noProductMsg = document.getElementById('no-product-message');
+            var visibleCount = 0;
+
+            productCards.forEach(function(card) {
+                var productName = card.getAttribute('data-name') || '';
+                
+                if (productName.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // แสดงข้อความแจ้งเตือนถ้าไม่มีสินค้าที่ตรงกัน
+            if (visibleCount === 0) {
+                noProductMsg.style.display = 'block';
+            } else {
+                noProductMsg.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>
