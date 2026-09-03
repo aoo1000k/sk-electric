@@ -5,7 +5,7 @@ app = Flask(__name__)
 # เพิ่มหมวดหมู่ (category) ให้สินค้าแต่ละชิ้น เพื่อทำระบบตัวกรอง
 electrical_products = [
     {"name": "สายไฟ IEC01 (THW) 1x1.5 sq.mm. (100 เมตร)", "price": "478", "img": "/static/thw15.jpg", "category": "wire"},
-    {"name": "สายไฟ IEC01 (THW) 1x2.5 sq.mm. (100 เมตร)", "price": "850", "img": "https://placehold.co", "category": "wire"},
+    {"name": "สายไฟ IEC01 (THW) 1x2.5 sq.mm. (100 เมตร)", "price": "850", "img": "/static/vaf25.jpg", "category": "wire"},
     {"name": "สายไฟ VAF 2x1.5 sq.mm. (100 เมตร)", "price": "1,200", "img": "https://placehold.co", "category": "wire"},
     {"name": "สายไฟ VAF 2x2.5 sq.mm. (100 เมตร)", "price": "1,800", "img": "https://placehold.co", "category": "wire"},
     {"name": "สายไฟ NYY 1C 1x1.5 sq.mm. (100 เมตร)", "price": "1,450", "img": "https://placehold.co", "category": "wire"},
