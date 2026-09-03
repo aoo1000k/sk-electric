@@ -45,6 +45,10 @@
                 font-size: 0.75rem;
                 padding: 8px 4px;
             }
+            .floating-btn-container {
+                bottom: 15px;
+                right: 15px;
+            }
         }
 
         body {
@@ -55,12 +59,23 @@
             color: #4A4A4A;
         }
 
+        /* แถบประกาศโปรโมชั่นด้านบนสุด */
+        .promo-banner {
+            background-color: #C58940;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
         /* หัวข้อด้านบนสุด */
         .header {
             text-align: left;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 50px 20px 20px 20px;
+            padding: 30px 20px 20px 20px;
         }
         .header h1 {
             color: #2D2D2D;
@@ -139,6 +154,7 @@
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.2s ease;
+            position: relative;
         }
         .product-card:hover {
             transform: translateY(-4px);
@@ -183,6 +199,34 @@
             background-color: #27AE60;
         }
 
+        /* ปุ่มลอยตัวติดต่อด่วนมุมขวาล่าง */
+        .floating-btn-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .float-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            font-size: 1.4rem;
+            transition: transform 0.2s;
+        }
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+        .float-line { background-color: #2ECC71; color: white; }
+        .float-tel { background-color: #3498DB; color: white; font-size: 1.2rem; }
+
         /* ส่วนท้ายเว็บ ข้อมูลติดต่อสไตล์มินิมอล */
         .footer {
             background-color: #EFEAE2;
@@ -213,6 +257,11 @@
 </head>
 <body>
 
+    <!-- แถบประกาศโปรโมชั่นด้านบน -->
+    <div class="promo-banner">
+        🔥 ช่างและผู้รับเหมาในเขตปากช่อง-เขาใหญ่ สั่งซื้อสเปกล็อตใหญ่ ขอราคาส่งพิเศษได้ทาง LINE!
+    </div>
+
     <!-- หัวข้อใหญ่ -->
     <div class="header" style="display: flex; align-items: center; gap: 20px;">
         <img src="/static/sk.jpg" alt="โลโก้ SK" style="width: 70px; height: 70px; border-radius: 12px;">
@@ -237,21 +286,29 @@
         <a href="/?cat=breaker" class="cat-btn {% if current_cat == 'breaker' %}active{% endif %}">เบรกเกอร์</a>
     </div>
 
-    <!-- ช่องกรอกคำค้นหาสไตล์มินิมอล -->
-    <div style="max-width: 1200px; margin: 15px auto; padding: 0 20px;">
+    <!-- ช่องกรอกคำค้นหาสไตล์มินิมอล + ปุ่มคัดลอกรายการสำหรับผู้รับเหมา -->
+    <div style="max-width: 1200px; margin: 15px auto; padding: 0 20px; display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="text" 
                id="searchInput" 
                placeholder="🔍 ค้นหาชื่อสินค้า / สายไฟ (เช่น vaf, thw, เบรกเกอร์)..." 
-               style="width: 100%; padding: 14px 20px; font-size: 1rem; font-family: inherit; border: 1px solid #ECE7E1; border-radius: 12px; background-color: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.01); box-sizing: border-box; outline: none; transition: border-color 0.2s;"
+               style="flex: 1; min-width: 250px; padding: 14px 20px; font-size: 1rem; font-family: inherit; border: 1px solid #ECE7E1; border-radius: 12px; background-color: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.01); box-sizing: border-box; outline: none; transition: border-color 0.2s;"
                onfocus="this.style.borderColor='#D9C3B0'" 
                onblur="this.style.borderColor='#ECE7E1'">
+               
+        <button onclick="copyProductList()" 
+                style="background-color: #34495E; color: white; border: none; padding: 0 20px; border-radius: 12px; font-family: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: background-color 0.2s;"
+                onmouseover="this.style.backgroundColor='#2C3E50'"
+                onmouseout="this.style.backgroundColor='#34495E'">
+            📋 คัดลอกรายการที่แสดงเพื่อส่ง LINE
+        </button>
     </div>
 
     <!-- ตารางสินค้า Grid 4 คอลัมน์ -->
     <div class="product-grid">
         {% for product in products %}
-        <div class="product-card" data-name="{{ product.name | lower }}">
+        <div class="product-card" data-name="{{ product.name | lower }}" data-price="{{ product.price }}">
             <div>
+                <span style="position: absolute; top: 12px; left: 12px; background: rgba(46, 204, 113, 0.9); color: white; font-size: 0.7rem; padding: 3px 8px; border-radius: 6px; font-weight: 500; z-index: 2;">มอก. แท้</span>
                 <img src="{{ product.img }}" alt="{{ product.name }}">
                 <div class="product-name">{{ product.name }}</div>
             </div>
@@ -268,6 +325,12 @@
         <div id="no-product-message" style="display: none; text-align: center; padding: 40px; color: #8C8A87; font-size: 1rem; grid-column: 1 / -1;">
             ❌ ไม่พบสินค้าที่คุณค้นหา ลองเปลี่ยนคำค้นหา หรือ <a href="https://lin.ee/ShzPAq2" target="_blank" style="color: #2ECC71; font-weight: 500; text-decoration: none;">สอบถามสินค้าทาง LINE</a> ได้เลยครับ
         </div>
+    </div>
+
+    <!-- ปุ่มลอยตัวติดต่อด่วนมุมขวาล่าง -->
+    <div class="floating-btn-container">
+        <a href="https://lin.ee/ShzPAq2" target="_blank" class="float-btn float-line" title="ติดต่อ LINE ร้าน">💬</a>
+        <a href="tel:0819667878" class="float-btn float-tel" title="โทรด่วน 081-966-7878">📞</a>
     </div>
 
     <!-- ส่วนท้ายเว็บระบุพิกัดร้านที่ปากช่อง -->
@@ -291,8 +354,9 @@
         </div>
     </div>
 
-    <!-- JavaScript สำหรับระบบค้นหาแบบเรียลไทม์ -->
+    <!-- JavaScript สำหรับระบบค้นหา และปุ่มคัดลอกรายการ -->
     <script>
+        // ระบบค้นหาแบบเรียลไทม์
         document.getElementById('searchInput').addEventListener('input', function(e) {
             var searchTerm = e.target.value.toLowerCase().trim();
             var productCards = document.querySelectorAll('.product-grid .product-card');
@@ -310,13 +374,46 @@
                 }
             });
 
-            // แสดงข้อความแจ้งเตือนถ้าไม่มีสินค้าที่ตรงกัน
             if (visibleCount === 0) {
                 noProductMsg.style.display = 'block';
             } else {
                 noProductMsg.style.display = 'none';
             }
         });
+
+        // ฟังก์ชันคัดลอกรายการสินค้าที่กำลังแสดงอยู่เพื่อส่ง LINE
+        function copyProductList() {
+            var visibleCards = document.querySelectorAll('.product-grid .product-card');
+            var textToCopy = "🛒 รายการสินค้าที่สนใจจากร้านไฟฟ้าแสงคูณ:\n";
+            var count = 0;
+
+            visibleCards.forEach(function(card) {
+                if (card.style.display !== 'none') {
+                    var name = card.getAttribute('data-name');
+                    // แปลงชื่อกลับให้อ่านง่ายเบื้องต้น หรือดึงจาก innerText ของ element ชื่อสินค้า
+                    var nameEl = card.querySelector('.product-name');
+                    var priceEl = card.querySelector('.product-price');
+                    if (nameEl && priceEl) {
+                        textToCopy += `- ${nameEl.innerText.trim()} (${priceEl.innerText.trim()})\n`;
+                        count++;
+                    }
+                }
+            });
+
+            if (count === 0) {
+                alert("ไม่พบรายการสินค้าที่แสดงอยู่");
+                return;
+            }
+
+            textToCopy += "\nรบกวนสอบถามราคารวมและค่าจัดส่งครับ/ค่ะ";
+
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert("📋 คัดลอกรายการสินค้าสำเร็จ! คุณสามารถนำไปกดวาง (Paste) ในแชท LINE เพื่อส่งให้ร้านได้เลยครับ");
+                window.open('https://lin.ee/ShzPAq2', '_blank');
+            }, function(err) {
+                alert("เกิดข้อผิดพลาดในการคัดลอก กรุณาลองใหม่อีกครั้ง");
+            });
+        }
     </script>
 
 </body>
