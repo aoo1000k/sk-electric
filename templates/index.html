@@ -113,9 +113,12 @@
                 <p>📍 <strong>{% if current_lang == 'th' %}คลังสินค้า:{% else %}Warehouse:{% endif %}</strong> {% if current_lang == 'th' %}อำเภอปากช่อง จังหวัดนครราชสีมา{% else %}Pak Chong, Nakhon Ratchasima{% endif %}</p>
                 <p>📞 <strong>{% if current_lang == 'th' %}เบอร์โทรศัพท์:{% else %}Phone:{% endif %}</strong> 0XX-XXX-XXXX</p>
             </div>
-            <div class="footer-section">
-                <h3>{% if current_lang == 'th' %}บริการสำหรับผู้รับเหมา{% else %}Contractor Services{% endif %}</h3>
-                <p>• {% if current_lang == 'th' %}บริการจัดส่งอุปกรณ์ไฟฟ้าด่วนเข้าไซต์งานในพื้นที่ปากช่อง{% else %}Fast delivery to construction sites in Pak Chong area{% endif %}</p>
+           <!-- ❌ จุดที่พิมพ์ผิดในโค้ดเดิม -->
+     </div>
+     {% else %}
+     <div class="no-products">...</div>
+     {% endfor %}
+
             </div>
         </div>
     </div>
