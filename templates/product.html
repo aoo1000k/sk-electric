@@ -11,13 +11,13 @@
     
     <style>
         :root {
-            --sk-navy: #0B1D3A;     /* สีน้ำเงินเข้มจากโลโก้ SK */
-            --sk-orange: #C58940;   /* สีส้มทองละมุนแบบเดียวกับหน้าแรก */
-            --sk-bg: #FAF6F0;       /* สีพื้นหลังครีมละมุนแบบหน้าแรก */
+            --sk-navy: #0B1D3A;     
+            --sk-orange: #C58940;   
+            --sk-bg: #FAF6F0;       
             --border-color: #ECE7E1;
         }
 
-        /* ใส่ลายน้ำโลโก้ร้านจางๆ เป็นพื้นหลังเหมือนหน้าแรก */
+        /* ลายน้ำโลโก้จางๆ พื้นหลัง */
         body::before {
             content: "";
             position: fixed;
@@ -36,7 +36,6 @@
             margin: 0; padding: 0; color: #4A4A4A;
         }
 
-        /* แถบบนสุด */
         .top-bar {
             background-color: var(--sk-navy);
             color: white; padding: 8px 20px; font-size: 0.85rem;
@@ -46,7 +45,6 @@
             background: rgba(197, 137, 64, 0.2); color: #F39C12; padding: 2px 8px; border-radius: 4px; font-weight: 500;
         }
 
-        /* Navbar */
         .navbar {
             background-color: #FFFFFF; border-bottom: 1px solid var(--border-color); padding: 15px 20px;
         }
@@ -59,7 +57,6 @@
         }
         .back-home:hover { background: #D9C3B0; }
 
-        /* ส่วนแสดงรายละเอียดสินค้าหลัก */
         .product-main-wrapper {
             max-width: 1200px; margin: 30px auto; background: #FFFFFF; padding: 30px; border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
@@ -76,20 +73,74 @@
         .product-sku { font-size: 0.9rem; color: #8C8A87; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
         
         .product-price-box {
-            font-size: 2.2rem; color: var(--sk-orange); font-weight: 600; margin-bottom: 25px;
+            font-size: 2.2rem; color: var(--sk-orange); font-weight: 600; margin-bottom: 20px;
         }
-        .shop-service-box {
-            background: #FAF6F0; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 25px; font-size: 0.9rem; line-height: 1.8;
-            border-left: 4px solid var(--sk-orange);
+        
+        /* สไตล์กล่องข้อมูลร้านและปุ่มแชร์แบบในรูปตัวอย่าง */
+        .shop-info-box {
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #5A5855;
         }
+        .shop-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .shop-info-row span:first-child {
+            color: #8C8A87;
+        }
+        .shop-info-row span:last-child {
+            font-weight: 500;
+            color: #2D2D2D;
+        }
+
+        /* ส่วนกล่องลิงก์แชร์และปุ่ม Copy */
+        .share-box {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+        }
+        .share-input-group {
+            display: flex;
+            margin-top: 8px;
+        }
+        .share-input {
+            flex: 1;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+            background: #F9F9F9;
+            border-radius: 6px 0 0 6px;
+            color: #6E6C69;
+            outline: none;
+        }
+        .copy-btn {
+            background-color: #EFEAE2;
+            color: #4A4A4A;
+            border: 1px solid var(--border-color);
+            border-left: none;
+            padding: 0 16px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: #D9C3B0;
+        }
+
         .buy-btn {
             display: block; text-align: center; background-color: #2ECC71; color: white; text-decoration: none;
             padding: 14px; border-radius: 12px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
-            transition: background 0.2s;
+            transition: background 0.2s; margin-bottom: 15px;
         }
         .buy-btn:hover { background-color: #27AE60; }
 
-        /* ส่วนรายละเอียดด้านล่าง */
         .product-detail-section {
             max-width: 1200px; margin: 30px auto; background: #FFFFFF; padding: 30px; border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid var(--border-color);
@@ -100,7 +151,6 @@
         }
         .detail-content { font-size: 0.95rem; line-height: 1.8; color: #6E6C69; }
 
-        /* Footer */
         .footer {
             background-color: #EFEAE2; color: #5A5855; padding: 40px 20px; margin-top: 60px; border-top: 1px solid var(--border-color);
         }
@@ -132,16 +182,41 @@
             <div class="product-sku">ชื่อภาษาอังกฤษ: {{ product.name_en }} | มาตรฐาน มอก. แท้</div>
             
             <div class="product-price-box">฿{{ product.price }} บาท</div>
-            
-            <div class="shop-service-box">
-                <div>📦 <strong>สถานะสินค้า:</strong> พร้อมส่ง (มีสต็อกที่คลังปากช่อง)</div>
-                <div>🚚 <strong>การจัดส่ง:</strong> จัดส่งด่วนทั่วไทย / มีบริการเก็บเงินปลายทาง</div>
-                <div>🧾 <strong>การออกบิล:</strong> สามารถออกใบกำกับภาษีเต็มรูปแบบได้</div>
-            </div>
 
+            <!-- ปุ่มสั่งซื้อผ่าน LINE -->
             <a href="https://lin.ee/ShzPAq2" target="_blank" class="buy-btn">
                 🟢 สั่งซื้อ / สอบถามรายละเอียดผ่าน LINE
             </a>
+
+            <!-- ข้อมูลร้านค้าและสถานะสินค้า (แบบในรูปตัวอย่าง) -->
+            <div class="shop-info-box">
+                <div class="shop-info-row">
+                    <span>สถานะการยืนยัน</span>
+                    <span style="color: #27AE60;">✓ ร้านค้านี้ยืนยันตัวตนแล้ว</span>
+                </div>
+                <div class="shop-info-row">
+                    <span>หมวดหมู่สินค้า</span>
+                    <span style="color: #C58940;">อุปกรณ์ไฟฟ้าและสายไฟ มอก.</span>
+                </div>
+                <div class="shop-info-row">
+                    <span>สภาพสินค้า</span>
+                    <span>สินค้าใหม่มือ 1</span>
+                </div>
+                <div class="shop-info-row">
+                    <span>สถานะสินค้า</span>
+                    <span style="color: #27AE60; font-weight: 600;">พร้อมส่ง (มีสต็อกหน้าร้าน)</span>
+                </div>
+            </div>
+
+            <!-- กล่องแชร์ลิงก์และปุ่ม Copy แบบในรูปตัวอย่าง -->
+            <div class="share-box">
+                <span style="font-size: 0.85rem; color: #8C8A87; font-weight: 500;">คัดลอกลิงก์หน้านี้เพื่อแชร์:</span>
+                <div class="share-input-group">
+                    <input type="text" id="shareLink" class="share-input" readonly>
+                    <button onclick="copyShareLink()" class="copy-btn">COPY</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -170,6 +245,22 @@
             </div>
         </div>
     </div>
+
+    <!-- สคริปต์สำหรับใส่ลิงก์ปัจจุบันลงในช่องกรอกและกดปุ่ม Copy ได้จริง -->
+    <script>
+        document.getElementById('shareLink').value = window.location.href;
+
+        function copyShareLink() {
+            var copyText = document.getElementById("shareLink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // สำหรับมือถือ
+            navigator.clipboard.writeText(copyText.value).then(function() {
+                alert("📋 คัดลอกลิงก์สินค้าสำเร็จ! สามารถนำไปส่งต่อให้ลูกค้าหรือเพื่อนได้เลยครับ");
+            }, function(err) {
+                alert("เกิดข้อผิดพลาดในการคัดลอก");
+            });
+        }
+    </script>
 
 </body>
 </html>
