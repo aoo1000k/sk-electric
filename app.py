@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# เพิ่มรายการสินค้าทั้งหมดรวมถึงเบรกเกอร์ตราช้าง (ดึงชื่อรูปตามในโฟลเดอร์ static)
+# เพิ่มข้อมูลชื่อภาษาอังกฤษ และเพิ่มเบรกเกอร์ตราช้างเข้าไปในรายการ
 electrical_products = [
     {"name": "สายไฟ IEC01 (THW) 1x1.5 sq.mm. (100 เมตร)", "name_en": "IEC01 (THW) Wire 1x1.5 sq.mm. (100m)", "price": "478", "img": "/static/thw15.jpg", "category": "wire"},
     {"name": "สายไฟ IEC01 (THW) 1x2.5 sq.mm. (100 เมตร)", "name_en": "IEC01 (THW) Wire 1x2.5 sq.mm. (100m)", "price": "850", "img": "/static/thw25.jpg", "category": "wire"},
