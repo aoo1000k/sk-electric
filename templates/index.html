@@ -77,7 +77,7 @@
         }
         .promo-btn:hover { background: #F1F5F9; }
 
-        /* โซนการันตีความปลอดภัย ป้องกันเว็บปลอม */
+        /* โซนการันตีความปลอดภัย */
         .trust-badge-bar {
             max-width: 1200px; margin: 20px auto; padding: 0 20px;
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;
@@ -643,23 +643,33 @@
             document.getElementById('cartModalOverlay').style.display = 'none';
         }
 
+        // ฟังก์ชันสั่งซื้อ พร้อมคัดลอกข้อความและแจ้งเตือนให้ลูกค้ามั่นใจว่าส่งถึงร้านทันที
         function checkoutCart() {
             if (cart.length === 0) {
                 alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณาเพิ่มสินค้าก่อนครับ");
                 return;
             }
 
-            let message = "🛒 สรุปรายการสั่งซื้อสินค้าจาก หจก.ร้านไฟฟ้าแสงคูณ:\n";
+            let message = "🛒 *แจ้งสั่งซื้อสินค้า / ขอใบเสนอราคา*\n";
+            message += "----------------------------------------\n";
             let grandTotal = 0;
+            
             cart.forEach((item, index) => {
                 let itemTotal = item.price * item.qty;
                 grandTotal += itemTotal;
                 message += `${index + 1}. ${item.name} x ${item.qty} = ฿${itemTotal.toLocaleString()}\n`;
             });
-            message += `\n💰 ราคารวมทั้งสิ้น: ฿${grandTotal.toLocaleString()} บาท\nรบกวนสรุปยอดรวมและค่าจัดส่งให้ด้วยครับ/ค่ะ`;
+            
+            message += "----------------------------------------\n";
+            message += `💰 *ราคารวมทั้งสิ้น: ฿${grandTotal.toLocaleString()} บาท*\n`;
+            message += "📍 *(ส่งถึง: หจก.ร้านไฟฟ้าแสงคูณ ปากช่อง)*\n\n";
+            message += "👉 รบกวนแอดมินสรุปยอดโอนและค่าจัดส่งให้ด้วยครับ/ค่ะ";
 
             navigator.clipboard.writeText(message).then(function() {
-                alert("📋 คัดลอกรายการสั่งซื้อสำเร็จ! ระบบจะพาท่านไปที่แชท LINE ให้กดวาง (Paste) ส่งให้ร้านได้เลยครับ");
+                alert("✅ คัดลอกรายการสั่งซื้อเรียบร้อยแล้ว!\n\nผลลัพธ์: ระบบกำลังพาท่านไปที่ LINE ร้าน...\n👉 รบกวนกด 'วาง' (Paste) ในช่องแชทเพื่อส่งออเดอร์ได้เลยครับ!");
+                window.open('https://lin.ee/ShzPAq2', '_blank');
+            }).catch(function(err) {
+                alert("กรุณาคัดลอกข้อความและส่งทาง LINE ครับ");
                 window.open('https://lin.ee/ShzPAq2', '_blank');
             });
         }
