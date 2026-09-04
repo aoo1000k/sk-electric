@@ -69,8 +69,13 @@
         .promo-banner {
             background-color: #C58940;
             color: white; text-align: center;
-            padding: 10px 20px; font-size: 0.9rem; font-weight: 500;
+            padding: 12px 20px; font-size: 0.95rem; font-weight: 500;
+            display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;
         }
+        .promo-btn {
+            background: #FFFFFF; color: #C58940; padding: 4px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: background 0.2s;
+        }
+        .promo-btn:hover { background: #F1F5F9; }
 
         .header {
             text-align: left; max-width: 1200px; margin: 0 auto; padding: 30px 20px 20px 20px;
@@ -173,6 +178,42 @@
             display: flex; align-items: center; gap: 4px;
         }
         .add-cart-btn:hover { background-color: #2C3E50; }
+
+        /* โซนเกี่ยวกับเราและความน่าเชื่อถือ (Gallery & About) */
+        .about-section {
+            max-width: 1200px; margin: 50px auto 20px auto; padding: 0 20px;
+        }
+        .about-container {
+            background: #FFFFFF; border: 1px solid #ECE7E1; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;
+        }
+        @media(max-width: 768px) {
+            .about-container { grid-template-columns: 1fr; }
+        }
+        .about-text h3 { color: #0B1D3A; margin-top: 0; font-size: 1.4rem; }
+        .about-text p { color: #5A5855; line-height: 1.7; font-size: 0.95rem; }
+        .about-badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .about-badge-item { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px; border-radius: 10px; text-align: center; font-weight: 500; color: #0B1D3A; font-size: 0.9rem; }
+
+        /* ปุ่มติดต่อด่วนลอยมุมขวาล่าง (Floating Contact Buttons) */
+        .floating-contact-group {
+            position: fixed;
+            bottom: 25px; right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 998;
+        }
+        .float-btn {
+            width: 55px; height: 55px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.5rem; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .float-btn:hover { transform: scale(1.1); }
+        .float-line { background-color: #00B900; }
+        .float-tel { background-color: #0084FF; }
 
         /* Widget ตะกร้าลอยมุมขวาบน */
         .floating-cart-widget {
@@ -306,8 +347,16 @@
         <div style="padding-left: 20px; font-weight: 500; white-space: nowrap;">📞 ฝ่ายขาย: 081-966-7878</div>
     </div>
 
+    <!-- แถบโปรโมชั่นพิเศษ พร้อมปุ่มขอใบเสนอราคา -->
     <div class="promo-banner">
-        🔥 ช่างและผู้รับเหมาในเขตปากช่อง-เขาใหญ่ สั่งซื้อสเปกล็อตใหญ่ ขอราคาส่งพิเศษได้ทาง LINE!
+        <span>🔥 ช่างและผู้รับเหมาในเขตปากช่อง-เขาใหญ่ สั่งซื้อสเปกล็อตใหญ่ ขอราคาส่งพิเศษได้ทาง LINE!</span>
+        <a href="https://lin.ee/ShzPAq2" target="_blank" class="promo-btn">📋 ส่งรายการขอใบเสนอราคา</a>
+    </div>
+
+    <!-- ปุ่มลอยติดต่อด่วนมุมขวาล่าง -->
+    <div class="floating-contact-group">
+        <a href="tel:0819667878" class="float-btn float-tel" title="โทรด่วนฝ่ายขาย">📞</a>
+        <a href="https://lin.ee/ShzPAq2" target="_blank" class="float-btn float-line" title="แชท LINE ร้าน">💬</a>
     </div>
 
     <!-- Widget ตะกร้าลอยมุมขวาบน -->
@@ -356,7 +405,7 @@
         <div class="info-item">🧾 ออกใบกำกับภาษี / ใบเสนอราคาได้</div>
     </div>
 
-    <!-- แถบเลือกหมวดหมู่สินค้าแบบ 2 ชั้นเดิม -->
+    <!-- แถบเลือกหมวดหมู่สินค้า -->
     <div class="category-menu">
         <a href="/?cat=all" class="cat-btn {% if current_cat == 'all' %}active{% endif %}">ทั้งหมด</a>
         <a href="/?cat=wire" class="cat-btn {% if current_cat == 'wire' %}active{% endif %}">สายไฟ</a>
@@ -388,6 +437,7 @@
         <div class="product-card" data-name="{{ product.name | lower }}" data-price="{{ product.price }}">
             <div>
                 <span style="position: absolute; top: 12px; left: 12px; background: rgba(46, 204, 113, 0.9); color: white; font-size: 0.7rem; padding: 3px 8px; border-radius: 6px; font-weight: 500; z-index: 2;">มอก. แท้</span>
+                <span style="position: absolute; top: 12px; right: 12px; background: #C58940; color: white; font-size: 0.65rem; padding: 3px 6px; border-radius: 6px; font-weight: 500; z-index: 2;">⭐ ช่างนิยมใช้</span>
                 <a href="/product/{{ loop.index0 }}">
                     <img src="{{ product.img }}" alt="{{ product.name }}">
                 </a>
@@ -416,6 +466,25 @@
         
         <div id="no-product-message" style="display: none; text-align: center; padding: 40px; color: #8C8A87; font-size: 1rem; grid-column: 1 / -1;">
             ❌ ไม่พบสินค้าที่คุณค้นหา ลองเปลี่ยนคำค้นหา หรือ <a href="https://lin.ee/ShzPAq2" target="_blank" style="color: #2ECC71; font-weight: 500; text-decoration: none;">สอบถามสินค้าทาง LINE</a> ได้เลยครับ
+        </div>
+    </div>
+
+    <!-- โซนเกี่ยวกับเราและความมั่นใจ (About & Trust Section) -->
+    <div class="about-section">
+        <div class="about-container">
+            <div class="about-text">
+                <h3>⚡ ทำไมช่างและผู้รับเหมาในปากช่องถึงเลือกเรา?</h3>
+                <p><strong>หจก.ร้านไฟฟ้าแสงคูณ</strong> ตั้งอยู่ใจกลางอำเภอปากช่อง นครราชสีมา เราคัดสรรเฉพาะอุปกรณ์ไฟฟ้า สายไฟ และท่อร้อยสายที่ได้ <strong>มาตรฐาน มอก. แท้ 100%</strong> เพื่อความปลอดภัยสูงสุดในทุกงานติดตั้ง พร้อมบริการจัดส่งด่วนเข้าไซต์งานและออกใบกำกับภาษีเต็มรูปแบบ</p>
+                <div class="about-badge-grid">
+                    <div class="about-badge-item">🏢 คลังสินค้าตัวจริงปากช่อง</div>
+                    <div class="about-badge-item">📦 สต็อกแน่นพร้อมส่งทันที</div>
+                    <div class="about-badge-item">🧾 ออกใบกำกับภาษีได้</div>
+                    <div class="about-badge-item">🤝 ราคาส่งพิเศษสำหรับช่าง</div>
+                </div>
+            </div>
+            <div>
+                <img src="/static/sk.jpg" alt="หน้าร้านไฟฟ้าแสงคูณ" style="width: 100%; border-radius: 12px; border: 1px solid #ECE7E1; aspect-ratio: 16/10; object-fit: cover;">
+            </div>
         </div>
     </div>
 
@@ -550,7 +619,7 @@
             message += `\n💰 ราคารวมทั้งสิ้น: ฿${grandTotal.toLocaleString()} บาท\nรบกวนสรุปยอดรวมและค่าจัดส่งให้ด้วยครับ/ค่ะ`;
 
             navigator.clipboard.writeText(message).then(function() {
-                alert("📋 คัดลอกรายการสั่งซื้อสำเร็จ! ระบบจะพาท่านไปที่แชท LINE ให้กดวาง (Paste) ส่งให้ร้านได้เลยครับ");
+                alert("📋 คัดลอกรายการสั่งซื้อสำเร็จ! ระบบจะพาท่านไปที่แชть LINE ให้กดวาง (Paste) ส่งให้ร้านได้เลยครับ");
                 window.open('https://lin.ee/ShzPAq2', '_blank');
             });
         }
@@ -600,7 +669,7 @@
             textToCopy += "\nรบกวนสอบถามราคารวมและค่าจัดส่งครับ/ค่ะ";
 
             navigator.clipboard.writeText(textToCopy).then(function() {
-                alert("📋 คัดลอกรายการสินค้าสำเร็จ! นำไปวางในแชท LINE เพื่อส่งให้ร้านได้เลยครับ");
+                alert("📋 คัดลอกรายการสินค้าสำเร็จ! นำไปวางในแชть LINE เพื่อส่งให้ร้านได้เลยครับ");
                 window.open('https://lin.ee/ShzPAq2', '_blank');
             });
         }
