@@ -74,9 +74,9 @@ electrical_products = [
     
     # 5. สาย THW #1.5 ยี่ห้อ ICON
     {
-        "name": "สาย THW #1.5 ยี่ห้อ ICON", 
+        "name": "สาย THW #1.5 ยี่ห้อ ICON(100เมตร)", 
         "name_en": "ICON THW Wire #1.5", 
-        "price": "350", 
+        "price": "845", 
         "img": "/static/icon_thw15.jpg", 
         "category": "wire", 
         "has_variations": False,
@@ -92,7 +92,7 @@ electrical_products = [
     {
         "name": "สวิทช์ ยี่ห้อ zeberg", 
         "name_en": "Zeberg Switch", 
-        "price": "35", 
+        "price": "20", 
         "img": "/static/zeberg_switch.jpg", 
         "category": "switch_outlet", 
         "has_variations": False,
@@ -108,7 +108,7 @@ electrical_products = [
     {
         "name": "ปลั๊กเดี่ยว ยี่ห้อ zeberg", 
         "name_en": "Zeberg Single Receptacle", 
-        "price": "40", 
+        "price": "20", 
         "img": "/static/zeberg_single_outlet.jpg", 
         "category": "switch_outlet", 
         "has_variations": False,
@@ -124,7 +124,7 @@ electrical_products = [
     {
         "name": "ปลั๊กกราวด์เดี่ยว ยี่ห้อ zeberg", 
         "name_en": "Zeberg Single Grounded Outlet", 
-        "price": "55", 
+        "price": "45", 
         "img": "/static/zeberg_ground_single.jpg", 
         "category": "switch_outlet", 
         "has_variations": False,
@@ -140,7 +140,7 @@ electrical_products = [
     {
         "name": "ปลั๊กกราวด์คู่ยี่ห้อ Zeberg", 
         "name_en": "Zeberg Duplex Grounded Outlet", 
-        "price": "85", 
+        "price": "50", 
         "img": "/static/zeberg_ground_คู่.jpg", 
         "category": "switch_outlet", 
         "has_variations": False,
@@ -157,7 +157,7 @@ electrical_products = [
     {
         "name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", 
         "name_en": "CHANG Safety Breaker 10A-30A", 
-        "price": "120", 
+        "price": "55", 
         "img": "/static/chang.jpg", 
         "category": "breaker", 
         "has_variations": False,
