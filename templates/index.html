@@ -70,7 +70,7 @@
         body {
             font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
             background-color: #FAF6F0;
-            margin: 0; padding: 0 0 90px 0;
+            margin: 0; padding: 0;
             color: #4A4A4A;
         }
 
@@ -122,7 +122,6 @@
             font-size: 1.05rem; color: #C58940; font-weight: 600; margin-bottom: 10px;
         }
 
-        /* ดีไซน์ปุ่มสั่งซื้อ LINE (สีเขียว) และปุ่มเพิ่ม (สีเทาเข้ม) แบบในรูปตัวอย่าง */
         .card-btn-group {
             display: flex;
             gap: 8px;
@@ -139,43 +138,7 @@
         }
         .add-cart-btn:hover { background-color: #2C3E50; }
 
-        /* แถบตะกร้าสินค้าลอยตัวด้านล่าง (สีน้ำเงินเข้มขรึมตามแบบ) */
-        .floating-cart-bar {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: #0B1D3A;
-            color: white;
-            padding: 14px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-            z-index: 1000;
-            box-sizing: border-box;
-        }
-        .cart-info {
-            font-size: 1rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .checkout-cart-btn {
-            background-color: #2ECC71;
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .checkout-cart-btn:hover {
-            background-color: #27AE60;
-        }
-
-        /* ไอคอนตะกร้าลอยมุมขวาบน */
+        /* ไอคอนตะกร้าลอยมุมขวาบน (แบบในรูปที่ 2) */
         .floating-cart-widget {
             position: fixed;
             top: 100px; right: 0;
@@ -189,6 +152,108 @@
             text-align: center;
             cursor: pointer;
         }
+
+        /* ดีไซน์หน้าต่างป๊อปอัปตะกร้าสินค้า (Modal เหมือนรูปที่ 1) */
+        .cart-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .cart-modal-container {
+            background: #FFFFFF;
+            width: 90%; max-width: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cart-modal-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ECE7E1;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2D2D2D;
+        }
+        .cart-close-btn {
+            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #2D2D2D;
+        }
+        .cart-modal-body {
+            padding: 20px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .cart-item-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #F8FAFC;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #E2E8F0;
+        }
+        .cart-item-row img {
+            width: 70px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid #CBD5E1;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-size: 0.95rem; font-weight: 500; color: #2D2D2D; margin-bottom: 4px;
+        }
+        .cart-item-price {
+            font-size: 1.05rem; color: #0B1D3A; font-weight: 600;
+        }
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .qty-btn {
+            background: #CBD5E1; border: none; width: 28px; height: 28px; border-radius: 4px; font-weight: bold; cursor: pointer;
+        }
+        .delete-btn {
+            background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #94A3B8; margin-left: 10px;
+        }
+        .delete-btn:hover { color: #EF4444; }
+
+        .cart-modal-footer {
+            padding: 20px;
+            background: #F8FAFC;
+            border-top: 1px solid #ECE7E1;
+        }
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .cart-total-label { font-size: 1.1rem; font-weight: 600; color: #2D2D2D; }
+        .cart-total-price { font-size: 1.5rem; font-weight: 700; color: #0B1D3A; }
+        
+        .cart-action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .btn-outline {
+            background: #FFFFFF; border: 1px solid #0B1D3A; color: #0B1D3A; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center;
+        }
+        .btn-primary {
+            background: #007AFF; border: none; color: #FFFFFF; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center;
+        }
+        .btn-primary:hover { background: #0056B3; }
 
         .footer {
             background-color: #EFEAE2; color: #5A5855; padding: 50px 20px; border-top: 1px solid #ECE7E1; margin-top: 40px;
@@ -210,11 +275,37 @@
         🔥 ช่างและผู้รับเหมาในเขตปากช่อง-เขาใหญ่ สั่งซื้อสเปกล็อตใหญ่ ขอราคาส่งพิเศษได้ทาง LINE!
     </div>
 
-    <!-- Widget ตะกร้าลอยมุมขวาบน -->
-    <div class="floating-cart-widget" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});">
+    <!-- Widget ตะกร้าลอยมุมขวาบน (แบบรูปที่ 2) -->
+    <div class="floating-cart-widget" onclick="openCartModal()">
         <div style="font-size: 1.3rem;">🛒</div>
         <div style="font-size: 0.8rem; font-weight: 600; color: #2D2D2D;">ตะกร้า</div>
         <div style="font-size: 0.8rem; color: #C58940;" id="widgetCartCount">(0)</div>
+    </div>
+
+    <!-- หน้าต่างป๊อปอัปตะกร้าสินค้า (Modal เหมือนรูปที่ 1) -->
+    <div class="cart-modal-overlay" id="cartModalOverlay">
+        <div class="cart-modal-container">
+            <div class="cart-modal-header">
+                <span id="cartModalTitle">สินค้าในตะกร้า (0 รายการ)</span>
+                <button class="cart-close-btn" onclick="closeCartModal()">✕</button>
+            </div>
+            <div class="cart-modal-body" id="cartModalBody">
+                <!-- รายการสินค้าจะถูกเพิ่มเข้ามาตรงนี้อัตโนมัติ -->
+            </div>
+            <div class="cart-modal-footer">
+                <div class="cart-total-row">
+                    <div>
+                        <div class="cart-total-label">ราคาสินค้าทั้งหมด</div>
+                        <div style="font-size: 0.8rem; color: #8C8A87;">ไม่รวมค่าจัดส่ง</div>
+                    </div>
+                    <div class="cart-total-price" id="cartTotalPrice">฿0.00</div>
+                </div>
+                <div class="cart-action-buttons">
+                    <button class="btn-outline" onclick="closeCartModal()">เลือกซื้อสินค้าเพิ่ม</button>
+                    <button class="btn-primary" onclick="checkoutCart()">เริ่มการสั่งซื้อ</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="header" style="display: flex; align-items: center; gap: 20px;">
@@ -257,7 +348,6 @@
         </button>
     </div>
 
-    <!-- โซนสินค้าแนะนำประจำสัปดาห์ / สินค้าขายดี -->
     <div class="section-title">🔥 สินค้าขายดี / แนะนำสำหรับช่างผู้รับเหมา</div>
 
     <!-- ตารางสินค้า Grid 4 คอลัมน์ -->
@@ -277,7 +367,7 @@
                 <div class="product-price">฿{{ product.price }}</div>
                 <div class="card-btn-group">
                     <a href="https://lin.ee/ShzPAq2" target="_blank" class="line-btn">🟢 สั่งซื้อ LINE</a>
-                    <button class="add-cart-btn" onclick="addToCart('{{ product.name }}', '{{ product.price }}')">🛒 เพิ่ม</button>
+                    <button class="add-cart-btn" onclick="addToCart('{{ product.name }}', '{{ product.price }}', '{{ product.img }}')">🛒 เพิ่ม</button>
                 </div>
             </div>
         </div>
@@ -286,16 +376,6 @@
         <div id="no-product-message" style="display: none; text-align: center; padding: 40px; color: #8C8A87; font-size: 1rem; grid-column: 1 / -1;">
             ❌ ไม่พบสินค้าที่คุณค้นหา ลองเปลี่ยนคำค้นหา หรือ <a href="https://lin.ee/ShzPAq2" target="_blank" style="color: #2ECC71; font-weight: 500; text-decoration: none;">สอบถามสินค้าทาง LINE</a> ได้เลยครับ
         </div>
-    </div>
-
-    <!-- แถบตะกร้าสินค้าลอยตัวด้านล่าง (ตามแบบเป๊ะๆ) -->
-    <div class="floating-cart-bar">
-        <div class="cart-info">
-            🛒 ตะกร้าสินค้า: <span id="cartCount">0</span> รายการ
-        </div>
-        <button class="checkout-cart-btn" onclick="checkoutCart()">
-            🟢 สรุปยอดส่ง LINE
-        </button>
     </div>
 
     <div class="footer">
@@ -323,31 +403,100 @@
     <script>
         let cart = [];
 
-        function addToCart(name, price) {
-            cart.push({ name: name, price: price });
-            document.getElementById('cartCount').innerText = cart.length;
-            document.getElementById('widgetCartCount').innerText = '(' + cart.length + ')';
-            alert("✅ เพิ่ม '" + name + "' ลงในตะกร้าเรียบร้อย!");
+        function addToCart(name, priceStr, img) {
+            // แปลงราคาจากสตริงเช่น "1,200" ให้เป็นตัวเลข
+            let cleanPrice = parseFloat(priceStr.toString().replace(/,/g, '')) || 0;
+            
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name: name, price: cleanPrice, img: img, qty: 1 });
+            }
+            updateCartUI();
+            openCartModal();
+        }
+
+        function updateCartUI() {
+            let totalCount = 0;
+            let totalPrice = 0;
+            let modalBody = document.getElementById('cartModalBody');
+            modalBody.innerHTML = '';
+
+            if (cart.length === 0) {
+                modalBody.innerHTML = '<div style="text-align: center; color: #8C8A87; padding: 30px;">ไม่มีสินค้าในตะกร้า</div>';
+            } else {
+                cart.forEach((item, index) => {
+                    totalCount += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    let row = document.createElement('div');
+                    row.className = 'cart-item-row';
+                    row.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">฿ ${(item.price * item.qty).toLocaleString()}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                            <span style="font-weight: 600; min-width: 20px; text-align: center;">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                            <button class="delete-btn" onclick="removeItem(${index})">🗑️</button>
+                        </div>
+                    `;
+                    modalBody.appendChild(row);
+                });
+            }
+
+            document.getElementById('widgetCartCount').innerText = '(' + totalCount + ')';
+            document.getElementById('cartModalTitle').innerText = 'สินค้าในตะกร้า (' + totalCount + ' รายการ)';
+            document.getElementById('cartTotalPrice').innerText = '฿ ' + totalPrice.toLocaleString() + '.00';
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function openCartModal() {
+            document.getElementById('cartModalOverlay').style.display = 'flex';
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModalOverlay').style.display = 'none';
         }
 
         function checkoutCart() {
             if (cart.length === 0) {
-                alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณากดปุ่ม '🛒 เพิ่ม' ที่สินค้าที่ต้องการก่อนครับ");
+                alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณาเพิ่มสินค้าก่อนครับ");
                 return;
             }
 
-            let message = "🛒 สรุปรายการสินค้าที่ต้องการสั่งซื้อจาก หจก.ร้านไฟฟ้าแสงคูณ:\n";
+            let message = "🛒 สรุปรายการสั่งซื้อสินค้าจาก หจก.ร้านไฟฟ้าแสงคูณ:\n";
+            let grandTotal = 0;
             cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.name} - ฿${item.price}\n`;
+                let itemTotal = item.price * item.qty;
+                grandTotal += itemTotal;
+                message += `${index + 1}. ${item.name} x ${item.qty} = ฿${itemTotal.toLocaleString()}\n`;
             });
-            message += "\nรบกวนสรุปยอดรวมและค่าจัดส่งให้ด้วยครับ/ค่ะ";
+            message += `\n💰 ราคารวมทั้งสิ้น: ฿${grandTotal.toLocaleString()} บาท\nรบกวนสรุปยอดรวมและค่าจัดส่งให้ด้วยครับ/ค่ะ`;
 
             navigator.clipboard.writeText(message).then(function() {
-                alert("📋 คัดลอกรายการในตะกร้าสำเร็จ! ระบบจะพาท่านไปที่แชท LINE ให้กดวาง (Paste) ส่งให้ร้านได้เลยครับ");
+                alert("📋 คัดลอกรายการสั่งซื้อสำเร็จ! ระบบจะพาท่านไปที่แชท LINE ให้กดวาง (Paste) ส่งให้ร้านได้เลยครับ");
                 window.open('https://lin.ee/ShzPAq2', '_blank');
             });
         }
 
+        // ระบบค้นหา
         document.getElementById('searchInput').addEventListener('input', function(e) {
             var searchTerm = e.target.value.toLowerCase().trim();
             var productCards = document.querySelectorAll('.product-grid .product-card');
