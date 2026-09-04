@@ -2,14 +2,14 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# รายการสินค้า (กำหนดราคาเริ่มต้น 'price' ให้ครบทุกตัว เพื่อให้หน้าแรกแสดงราคาได้ถูกต้อง)
+# รายการสินค้า (เพิ่มรายละเอียด highlight และ features เฉพาะตัวได้)
 electrical_products = [
     {
         "name": "ตู้คอนซูเมอร์ 4 ช่อง ยี่ห้อ BF", 
         "name_en": "BF Consumer Unit 4 Ways", 
         "category": "consumer_unit",
         "img": "/static/bf_consumer4.jpg",
-        "price": "480",  # ราคาเริ่มต้น
+        "price": "480",
         "has_variations": True,
         "variations": [
             {"name": "แบบธรรมดา (ไม่กันดูด)", "price": "480"},
@@ -21,14 +21,13 @@ electrical_products = [
         "name_en": "Metallic Pipe Clip", 
         "category": "pipe",
         "img": "/static/metallic_clamp.jpg",
-        "price": "45",  # ราคาเริ่มต้น
+        "price": "45",
         "has_variations": True,
         "variations": [
             {"name": "แบบ 1 สกรู", "price": "45"},
             {"name": "แบบ 2 สกรู", "price": "98"}
         ]
     },
-    # สินค้าแบบปกติที่มีราคาเดียว
     {"name": "สาย THW #1.5 ยี่ห้อ ICON", "name_en": "ICON THW Wire #1.5", "price": "350", "img": "/static/icon_thw15.jpg", "category": "wire", "has_variations": False},
     {"name": "สวิทช์ ยี่ห้อ zeberg", "name_en": "Zeberg Switch", "price": "35", "img": "/static/zeberg_switch.jpg", "category": "switch_outlet", "has_variations": False},
     {"name": "ปลั๊กเดี่ยว ยี่ห้อ zeberg", "name_en": "Zeberg Single Receptacle", "price": "40", "img": "/static/zeberg_single_outlet.jpg", "category": "switch_outlet", "has_variations": False},
@@ -42,7 +41,21 @@ electrical_products = [
     {"name": "สายไฟ NYY 4x10 sq.mm. (ตัดเมตร)", "name_en": "NYY Wire 4x10 sq.mm. (Per Meter)", "price": "280 / เมตร", "img": "/static/nyy410.jpg", "category": "wire", "has_variations": False},
     {"name": "ท่อร้อยสายไฟ PVC ขนาด 1/2 นิ้ว (สีเหลือง)", "name_en": "PVC Conduit 1/2 Inch (Yellow)", "price": "45", "img": "/static/pvc12.jpg", "category": "pipe", "has_variations": False},
     {"name": "เบรกเกอร์ 2P 20A (ช้าง/Panasonic)", "name_en": "Circuit Breaker 2P 20A", "price": "120", "img": "/static/breaker20.jpg", "category": "breaker", "has_variations": False},
-    {"name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", "name_en": "CHANG Safety Breaker 10A-30A", "price": "120", "img": "/static/chang.jpg", "category": "breaker", "has_variations": False}
+    {
+        "name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", 
+        "name_en": "CHANG Safety Breaker 10A-30A", 
+        "price": "120", 
+        "img": "/static/chang.jpg", 
+        "category": "breaker", 
+        "has_variations": False,
+        "highlight": "เซอร์กิตเบรกเกอร์ (สวิตช์ตัดไฟอัตโนมัติ) ตราช้าง (CHANG) ของแท้ 100% ป้องกันไฟลัดวงจรและไฟเกิน ได้รับการยอมรับจากช่างและผู้รับเหมาทั่วไป",
+        "features": [
+            "เบรกเกอร์คุณภาพมาตรฐาน มอก. ปลอดภัย ทนทานต่อการใช้งานสูง",
+            "มีให้เลือกครบทุกขนาดตามการใช้งาน: 10A, 15A, 20A และ 30A",
+            "พร้อมส่งทันทีจากคลังสินค้าอำเภอปากช่อง นครราชสีมา",
+            "มีราคาส่งพิเศษสำหรับงานโครงการและผู้รับเหมา"
+        ]
+    }
 ]
 
 @app.route('/')
