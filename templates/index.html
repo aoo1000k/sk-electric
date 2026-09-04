@@ -4,11 +4,9 @@
     <link rel="icon" type="image/jpeg" href="/static/sk.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- ⭐ โค้ด SEO ดันร้านขึ้นหน้าแรก Google ค้นหา "ร้านไฟฟ้า ปากช่อง" -->
     <title>หจก.ร้านไฟฟ้าแสงคูณ - อุปกรณ์ไฟฟ้า ปากช่อง สายไฟ มอก. ราคาส่ง</title>
-    <meta name="description" content="ร้านขายอุปกรณ์ไฟฟ้า ปากช่อง โคราช จำหน่ายสายไฟ ท่อร้อยสาย เบรกเกอร์ ตู้คอนซูเมอร์ อุปกรณ์ไฟฟ้าแรงต่ำ-แรงสูง มอก.แท้ สำหรับช่างและผู้รับเหมา ราคาปลีก-ส่ง">
-    <meta name="keywords" content="ร้านไฟฟ้า ปากช่อง, ขายอุปกรณ์ไฟฟ้า ปากช่อง, ร้านขายสายไฟ ปากช่อง, อุปกรณ์ไฟฟ้า โคราช, ร้านไฟฟ้าแสงคูณ, ช่างไฟฟ้าปากช่อง">
+    <meta name="description" content="ร้านขายอุปกรณ์ไฟฟ้า ปากช่อง โคราช จำหน่ายสายไฟ ท่อร้อยสาย เบรกเกอร์ ตู้คอนซูเมอร์ อุปกรณ์ไฟฟ้า มอก.แท้ สำหรับช่างและผู้รับเหมา ราคาปลีก-ส่ง">
+    <meta name="keywords" content="ร้านไฟฟ้า ปากช่อง, ขายอุปกรณ์ไฟฟ้า ปากช่อง, ร้านขายสายไฟ ปากช่อง, อุปกรณ์ไฟฟ้า โคราช, ร้านไฟฟ้าแสงคูณ">
     
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
@@ -39,6 +37,31 @@
             background-color: var(--sk-bg);
             margin: 0; padding: 0;
             color: #4A4A4A;
+        }
+
+        /* แถบ Top Bar มีข้อความวิ่ง */
+        .top-bar {
+            background-color: var(--sk-navy);
+            color: white; padding: 8px 20px; font-size: 0.9rem;
+            display: flex; justify-content: space-between; align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .running-text {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        .running-text a {
+            color: #F39C12;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .running-text a:hover {
+            color: #FFFFFF;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .promo-banner {
@@ -273,6 +296,14 @@
 </head>
 <body>
 
+    <!-- แถบด้านบนสุด ข้อความวิ่ง + ลิงก์ Google Maps และเบอร์โทร -->
+    <div class="top-bar">
+        <div class="running-text">
+            📍 ลูกค้าสามารถมาดูสินค้าจริงได้ที่หน้าร้าน <a href="https://maps.app.goo.gl/eojMTLoHWLQGj4BZ7" target="_blank">👉คลิกดูแผนที่ Google Maps ที่นี่เลยครับ</a> 🚚 มีบริการจัดส่งด่วนในเขตปากช่อง-เขาใหญ่
+        </div>
+        <div style="padding-left: 20px; font-weight: 500; white-space: nowrap;">📞 ฝ่ายขาย: 081-966-7878</div>
+    </div>
+
     <div class="promo-banner">
         🔥 ช่างและผู้รับเหมาในเขตปากช่อง-เขาใหญ่ สั่งซื้อสเปกล็อตใหญ่ ขอราคาส่งพิเศษได้ทาง LINE!
     </div>
@@ -323,7 +354,7 @@
         <div class="info-item">🧾 ออกใบกำกับภาษี / ใบเสนอราคาได้</div>
     </div>
 
-    <!-- แถบเลือกหมวดหมู่สินค้าแบบ 2 ชั้นเดิม -->
+    <!-- แถบเลือกหมวดหมู่สินค้า -->
     <div class="category-menu">
         <a href="/?cat=all" class="cat-btn {% if current_cat == 'all' %}active{% endif %}">ทั้งหมด</a>
         <a href="/?cat=wire" class="cat-btn {% if current_cat == 'wire' %}active{% endif %}">สายไฟ</a>
