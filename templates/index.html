@@ -183,17 +183,11 @@
             display: flex;
             gap: 8px;
         }
-        .line-btn {
-            flex: 1; text-align: center; background-color: #2ECC71; color: white; text-decoration: none; padding: 10px 6px; border-radius: 10px; font-weight: 500; font-size: 0.85rem; transition: background-color 0.2s;
+        .add-cart-btn-full {
+            flex: 1; background-color: #2ECC71; color: white; border: none; padding: 10px 6px; border-radius: 10px; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;
             display: flex; align-items: center; justify-content: center; gap: 4px;
         }
-        .line-btn:hover { background-color: #27AE60; }
-        
-        .add-cart-btn {
-            background-color: #34495E; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;
-            display: flex; align-items: center; gap: 4px;
-        }
-        .add-cart-btn:hover { background-color: #2C3E50; }
+        .add-cart-btn-full:hover { background-color: #27AE60; }
 
         /* โซนเกี่ยวกับเราและความน่าเชื่อถือ */
         .about-section {
@@ -496,9 +490,11 @@
                 </select>
                 {% endif %}
 
+                <!-- ปุ่มเพิ่มสินค้าลงตะกร้า (เปลี่ยนจากลิงก์ LINE เดี่ยว เป็นปุ่มเพิ่มเข้าตะกร้าทุกชิ้น) -->
                 <div class="card-btn-group">
-                    <a href="https://lin.ee/ShzPAq2" target="_blank" class="line-btn">🟢 สั่งซื้อ LINE</a>
-                    <button class="add-cart-btn" onclick="addVariationToCart('{{ product.name }}', '{{ loop.index0 }}', '{{ product.img }}', '{{ product.has_variations | lower }}')">🛒 เพิ่ม</button>
+                    <button class="add-cart-btn-full" onclick="addVariationToCart('{{ product.name }}', '{{ loop.index0 }}', '{{ product.img }}', '{{ product.has_variations | lower }}')">
+                        🛒 เพิ่มลงตะกร้า
+                    </button>
                 </div>
             </div>
         </div>
@@ -643,7 +639,7 @@
             document.getElementById('cartModalOverlay').style.display = 'none';
         }
 
-        // ฟังก์ชันสั่งซื้อ (ก๊อปปี้ข้อความออเดอร์แล้วเด้งเปิดแชท LINE ของร้านโดยตรง)
+        // ฟังก์ชันส่งออเดอร์จากตะกร้าสินค้าทั้งหมดเข้า LINE
         function checkoutCart() {
             if (cart.length === 0) {
                 alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณาเพิ่มสินค้าก่อนครับ");
