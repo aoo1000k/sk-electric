@@ -11,6 +11,37 @@
     <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
+        /* เมนูหมวดหมู่สินค้าแบบ 2 ชั้น (แบ่งเป็น 2 แถวเรียงสวยๆ) */
+        .category-menu {
+            display: grid;
+            grid-template-rows: repeat(2, auto); /* บังคับให้แบ่งเป็น 2 แถวเป๊ะๆ */
+            grid-auto-flow: column; /* ให้ปุ่มเรียงต่อกันไปทางขวาแบบ 2 ชั้น */
+            max-width: 1200px;
+            margin: 30px auto 10px auto;
+            padding: 0 20px 10px 20px;
+            gap: 10px;
+            overflow-x: auto; /* เลื่อนดูแนวนอนได้ถ้าเมนูยาวเกินจอ */
+            scroll-behavior: smooth;
+        }
+
+        /* ตกแต่งปุ่มหมวดหมู่ */
+        .cat-btn {
+            padding: 8px 18px;
+            background: #EFEAE2;
+            border: none;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #6E6C69;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap; /* ห้ามตัดบรรทัดข้อความในปุ่ม */
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .cat-btn:hover, .cat-btn.active {
+            background: #D9C3B0;
+            color: #2D2D2D;
+        }
         /* บังคับการแสดงผลบนหน้าจอมือถือ (ความกว้างจอไม่เกิน 768px) */
         body::before {
             content: "";
