@@ -11,8 +11,7 @@ electrical_products = [
     {"name": "สายไฟ NYY 1x1.5 sq.mm. (100 เมตร)", "name_en": "NYY Wire 1x1.5 sq.mm. (100m)", "price": "1,450", "img": "/static/nyy15.jpg", "category": "wire"},
     {"name": "สายไฟ NYY 4x10 sq.mm. (ตัดเมตร)", "name_en": "NYY Wire 4x10 sq.mm. (Per Meter)", "price": "280 / เมตร", "img": "/static/nyy410.jpg", "category": "wire"},
     {"name": "ท่อร้อยสายไฟ PVC ขนาด 1/2 นิ้ว (สีเหลือง)", "name_en": "PVC Conduit 1/2 Inch (Yellow)", "price": "45", "img": "/static/pvc12.jpg", "category": "pipe"},
-    {"name": "เบรกเกอร์ 2P 20A (ช้าง/Panasonic)", "name_en": "Circuit Breaker 2P 20A", "price": "120", "img": "/static/breaker20.jpg", "category": "breaker"},
-    {"name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", "name_en": "CHANG Safety Breaker 10A-30A", "price": "120", "img": "/static/chang_breaker.jpg.heif", "category": "breaker"}
+    {"name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", "name_en": "CHANG Safety Breaker 10A-30A", "price": "120", "img": "/static/chang.jpg", "category": "breaker"}
 ]
 
 @app.route('/')
