@@ -59,21 +59,16 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* ปุ่มลอยติดต่อด่วนมุมขวาล่าง */
         .floating-contact-group {
             position: fixed;
             bottom: 25px; right: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 998;
+            display: flex; flex-direction: column; gap: 12px; z-index: 998;
         }
         .float-btn {
             width: 55px; height: 55px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             color: white; font-size: 1.5rem; text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.2s;
         }
         .float-btn:hover { transform: scale(1.1); }
         .float-line { background-color: #00B900; }
@@ -111,28 +106,15 @@
         }
 
         .shop-info-box {
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #5A5855;
+            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+            padding: 15px 0; margin-bottom: 20px; font-size: 0.9rem; color: #5A5855;
         }
         .shop-info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
         }
-        .shop-info-row span:first-child {
-            color: #8C8A87;
-        }
+        .shop-info-row span:first-child { color: #8C8A87; }
 
-        .contact-icons-group {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
+        .contact-icons-group { display: flex; gap: 12px; align-items: center; }
         .contact-circle-wrap {
             width: 44px; height: 44px; border-radius: 50%; border: 1px solid #CBD5E1;
             display: flex; align-items: center; justify-content: center; background: transparent; transition: transform 0.2s;
@@ -150,7 +132,7 @@
         .buy-btn {
             display: block; text-align: center; background-color: #2ECC71; color: white; text-decoration: none;
             padding: 14px; border-radius: 12px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
-            transition: background 0.2s; margin-bottom: 15px;
+            transition: background 0.2s; margin-bottom: 15px; cursor: pointer; border: none; width: 100%;
         }
         .buy-btn:hover { background-color: #27AE60; }
 
@@ -209,17 +191,18 @@
 
     <div class="product-main-wrapper">
         <div class="product-img-box">
-            <img src="{{ product.img }}" alt="{{ product.name }}">
+            <img src="{{ product.img }}" alt="{{ product.name }}" id="productImg">
         </div>
         <div class="product-info">
-            <h1>{{ product.name }}</h1>
+            <h1 id="productName">{{ product.name }}</h1>
             <div class="product-sku">ชื่อภาษาอังกฤษ: {{ product.name_en }} | มาตรฐาน มอก. แท้</div>
             
-            <div class="product-price-box">฿{{ product.price }} บาท</div>
+            <div class="product-price-box" id="productPrice">฿{{ product.price }} บาท</div>
 
-            <a href="https://lin.ee/ShzPAq2" target="_blank" class="buy-btn">
+            <!-- ปุ่มสั่งซื้อด่วน ดึงข้อมูลสินค้าชิ้นนี้ส่งเข้า LINE ทันที -->
+            <button onclick="orderSingleProduct()" class="buy-btn">
                 🟢 สั่งซื้อ / สอบถามรายละเอียดผ่าน LINE
-            </a>
+            </button>
 
             <div class="shop-info-box">
                 <div class="shop-info-row">
@@ -301,5 +284,22 @@
         </div>
     </div>
 
+    <script>
+        // ฟังก์ชันกดสั่งสินค้าชิ้นเดี่ยวจากหน้าดีเทล เด้งเข้า LINE พร้อมชื่อ ราคา และลิงก์หน้านี้ทันที
+        function orderSingleProduct() {
+            let productName = document.getElementById('productName').innerText;
+            let productPrice = document.getElementById('productPrice').innerText;
+            let productUrl = window.location.href;
+
+            let message = `🛒 สนใจสั่งซื้อสินค้า / สอบถาม:\n\n`;
+            message += `▪️ สินค้า: ${productName}\n`;
+            message += `▪️ ราคา: ${productPrice}\n`;
+            message += `🔗 ลิงก์สินค้า: ${productUrl}\n\n`;
+            message += `รบกวนแอดมินเช็กสต็อกและสรุปยอดให้ด้วยครับ/ค่ะ`;
+
+            let encodedMessage = encodeURIComponent(message);
+            window.open(`https://line.me/R/msg/text/?${encodedMessage}`, '_blank');
+        }
+    </script>
 </body>
 </html>
