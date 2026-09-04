@@ -140,6 +140,20 @@
             color: #2D2D2D;
         }
 
+        /* ปุ่มแท็กกรองด่วนสไตล์ช่าง (Quick Filter Tags) */
+        .quick-tag-bar {
+            max-width: 1200px; margin: 10px auto; padding: 0 20px;
+            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+        }
+        .quick-tag-label { font-size: 0.85rem; font-weight: 600; color: #0B1D3A; margin-right: 4px; }
+        .quick-tag {
+            background: #FFFFFF; border: 1px solid #CBD5E1; color: #4A4A4A; padding: 5px 12px;
+            border-radius: 15px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+        }
+        .quick-tag:hover, .quick-tag.active-tag {
+            background: #0B1D3A; color: #FFFFFF; border-color: #0B1D3A;
+        }
+
         .search-section {
             max-width: 1200px; margin: 15px auto; padding: 0 20px; display: flex; gap: 10px; flex-wrap: wrap;
         }
@@ -455,6 +469,17 @@
         <a href="/?cat=mdb" class="cat-btn {% if current_cat == 'mdb' %}active{% endif %}">ตู้MDBสั่งประกอบ</a>
     </div>
 
+    <!-- ปุ่มแท็กกรองด่วนสำหรับช่าง (Quick Filter Tags) -->
+    <div class="quick-tag-bar">
+        <span class="quick-tag-label">⚡ ค้นหาด่วน:</span>
+        <button class="quick-tag" onclick="filterByTag('ทั้งหมด')">ทั้งหมด</button>
+        <button class="quick-tag" onclick="filterByTag('สายไฟ')">สายไฟ</button>
+        <button class="quick-tag" onclick="filterByTag('เบรกเกอร์')">เบรกเกอร์</button>
+        <button class="quick-tag" onclick="filterByTag('ตู้คอนซูเมอร์')">ตู้คอนซูเมอร์</button>
+        <button class="quick-tag" onclick="filterByTag('สวิตช์')">สวิตช์-ปลั๊ก</button>
+        <button class="quick-tag" onclick="filterByTag('แค้ม')">ท่อและอุปกรณ์</button>
+    </div>
+
     <!-- ช่องค้นหาและปุ่มคัดลอกรายการส่ง LINE -->
     <div class="search-section">
         <input type="text" id="searchInput" placeholder="🔍 ค้นหาชื่อสินค้า / สายไฟ (เช่น vaf, thw, เบรกเกอร์)..." class="search-input">
@@ -490,7 +515,6 @@
                 </select>
                 {% endif %}
 
-                <!-- ปุ่มเพิ่มสินค้าลงตะกร้า (เปลี่ยนจากลิงก์ LINE เดี่ยว เป็นปุ่มเพิ่มเข้าตะกร้าทุกชิ้น) -->
                 <div class="card-btn-group">
                     <button class="add-cart-btn-full" onclick="addVariationToCart('{{ product.name }}', '{{ loop.index0 }}', '{{ product.img }}', '{{ product.has_variations | lower }}')">
                         🛒 เพิ่มลงตะกร้า
@@ -639,7 +663,7 @@
             document.getElementById('cartModalOverlay').style.display = 'none';
         }
 
-        // ฟังก์ชันส่งออเดอร์จากตะกร้าสินค้าทั้งหมดเข้า LINE
+        // ฟังก์ชันส่งออเดอร์จากตะกร้าสินค้าทั้งหมดเข้า LINE (ก๊อปปี้อัตโนมัติแล้วเปิดแชท)
         function checkoutCart() {
             if (cart.length === 0) {
                 alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณาเพิ่มสินค้าก่อนครับ");
@@ -668,6 +692,18 @@
                 alert("กรุณาคัดลอกข้อความและส่งทาง LINE ครับ");
                 window.open('https://lin.ee/ShzPAq2', '_blank');
             });
+        }
+
+        // ฟังก์ชันกรองสินค้าด้วยปุ่มแท็กด่วน
+        function filterByTag(keyword) {
+            var searchInput = document.getElementById('searchInput');
+            if (keyword === 'ทั้งหมด') {
+                searchInput.value = '';
+            } else {
+                searchInput.value = keyword;
+            }
+            // จำลองการพิมพ์ค้นหาอัตโนมัติ
+            searchInput.dispatchEvent(new Event('input'));
         }
 
         document.getElementById('searchInput').addEventListener('input', function(e) {
