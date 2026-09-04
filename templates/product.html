@@ -75,7 +75,7 @@
             font-size: 2.2rem; color: var(--sk-orange); font-weight: 600; margin-bottom: 20px;
         }
 
-        /* ตารางข้อมูลร้านค้าและปุ่มไอคอนติดต่อ */
+        /* ตารางข้อมูลร้านค้า */
         .shop-info-box {
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
@@ -94,31 +94,44 @@
             color: #8C8A87;
         }
 
-        /* กลุ่มปุ่มไอคอนติดต่อ (โทร, Messenger, LINE) */
+        /* กลุ่มปุ่มไอคอนติดต่อแบบในรูปตัวอย่าง (วงกลมสีขาว มีโลโก้สีแอปแท้ + กรอบวงกลมล้อมรอบ) */
         .contact-icons-group {
             display: flex;
             gap: 12px;
             align-items: center;
         }
-        .contact-icon-btn {
-            width: 42px;
-            height: 42px;
+        .contact-circle-wrap {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
+            border: 1px solid #CBD5E1; /* กรอบวงกลมบางๆ รอบนอก */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            background: transparent;
             transition: transform 0.2s;
         }
-        .contact-icon-btn:hover {
-            transform: scale(1.1);
+        .contact-circle-wrap:hover {
+            transform: scale(1.08);
+            border-color: var(--sk-orange);
         }
-        .icon-tel { background-color: #0084FF; } /* ฟ้าโทร/แมสเซนเจอร์ */
-        .icon-msg { background-color: #0099FF; } /* ฟ้า Messenger */
-        .icon-line { background-color: #00B900; } /* เขียว LINE */
+        .contact-icon-inner {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #FFFFFF; /* วงกลมสีขาวด้านใน */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        /* สีตามแอปต้นฉบับ */
+        .icon-tel-color { color: #0084FF; } /* สีฟ้าสำหรับโทรศัพท์ */
+        .icon-fb-color { color: #1877F2; }  /* สีฟ้า Facebook */
+        .icon-line-color { color: #00B900; }/* สีเขียว LINE */
 
         /* ส่วนแชร์ลิงก์และกล่อง Copy */
         .share-section {
@@ -128,20 +141,21 @@
         }
         .social-share-icons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
             margin: 10px 0;
         }
-        .social-share-icon {
-            width: 30px;
-            height: 30px;
+        .social-share-circle {
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: #2D2D2D;
-            color: white;
+            border: 1px solid #CBD5E1;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
+            background: #FFFFFF;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             font-size: 0.85rem;
             font-weight: bold;
         }
@@ -224,22 +238,28 @@
             
             <div class="product-price-box">฿{{ product.price }} บาท</div>
 
-            <!-- ปุ่มสั่งซื้อหลักผ่าน LINE -->
+            <!-- ปุ่มสั่งซื้อผ่าน LINE -->
             <a href="https://lin.ee/ShzPAq2" target="_blank" class="buy-btn">
                 🟢 สั่งซื้อ / สอบถามรายละเอียดผ่าน LINE
             </a>
 
-            <!-- ข้อมูลร้านค้าและปุ่มไอคอนติดต่อ (โทร, Messenger, LINE) แบบในรูปตัวอย่าง -->
+            <!-- ข้อมูลร้านค้าและปุ่มไอคอนติดต่อดีไซน์วงกลมสีขาว -->
             <div class="shop-info-box">
                 <div class="shop-info-row">
                     <span>คุยกับร้านค้า</span>
                     <div class="contact-icons-group">
-                        <!-- ปุ่มโทร (ใส่เบอร์โทรของคุณตรง tel:) -->
-                        <a href="tel:0819667878" class="contact-icon-btn icon-tel" title="โทรด่วน">📞</a>
-                        <!-- ปุ่ม Messenger (ใส่ลิงก์เพจ/แชทของคุณตรง href) -->
-                        <a href="#" target="_blank" class="contact-icon-btn icon-msg" title="Facebook Messenger">💬</a>
-                        <!-- ปุ่ม LINE (ใส่ลิงก์ LINE ของคุณตรง href) -->
-                        <a href="https://lin.ee/ShzPAq2" target="_blank" class="contact-icon-btn icon-line" title="LINE ร้าน">💚</a>
+                        <!-- ปุ่มโทร -->
+                        <div class="contact-circle-wrap" title="โทรด่วน">
+                            <a href="tel:0819667878" class="contact-icon-inner icon-tel-color">📞</a>
+                        </div>
+                        <!-- ปุ่ม Facebook (เปลี่ยนเครื่องหมาย # เป็นลิงก์ FB ของร้าน) -->
+                        <div class="contact-circle-wrap" title="Facebook ร้าน">
+                            <a href="#" target="_blank" class="contact-icon-inner icon-fb-color">f</a>
+                        </div>
+                        <!-- ปุ่ม LINE -->
+                        <div class="contact-circle-wrap" title="LINE ร้าน">
+                            <a href="https://lin.ee/ShzPAq2" target="_blank" class="contact-icon-inner icon-line-color">L</a>
+                        </div>
                     </div>
                 </div>
                 <div class="shop-info-row">
@@ -256,16 +276,13 @@
                 </div>
             </div>
 
-            <!-- ส่วนแชร์ลิงก์ (Facebook, X, LINE และช่อง Copy) -->
+            <!-- ส่วนแชร์ลิงก์โซเชียล -->
             <div class="share-section">
                 <span style="font-size: 0.85rem; color: #8C8A87; font-weight: 500;">Share :</span>
                 <div class="social-share-icons">
-                    <!-- ปุ่มแชร์ Facebook -->
-                    <a href="#" target="_blank" class="social-share-icon" style="background: #1877F2;" title="แชร์ลง Facebook">f</a>
-                    <!-- ปุ่มแชร์ X (Twitter) -->
-                    <a href="#" target="_blank" class="social-share-icon" style="background: #000000;" title="แชร์ลง X">𝕏</a>
-                    <!-- ปุ่มแชร์ LINE -->
-                    <a href="#" target="_blank" class="social-share-icon" style="background: #00B900;" title="แชร์ลง LINE">L</a>
+                    <a href="#" target="_blank" class="social-share-circle" style="color: #1877F2;" title="แชร์ Facebook">f</a>
+                    <a href="#" target="_blank" class="social-share-circle" style="color: #000000;" title="แชร์ X">𝕏</a>
+                    <a href="#" target="_blank" class="social-share-circle" style="color: #00B900;" title="แชร์ LINE">L</a>
                 </div>
                 <div class="share-input-group">
                     <input type="text" id="shareLink" class="share-input" readonly>
