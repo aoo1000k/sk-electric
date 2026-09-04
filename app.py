@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# รายการสินค้า (แยกสินค้าที่มีหลายตัวเลือกออกมาเป็นชิ้นเดี่ยวๆ ชัดเจน เพื่อความง่ายและแม่นยำ)
+# รายการสินค้า (แก้ไขโครงสร้างวงเล็บและปีกกาให้ถูกต้องเรียบร้อย)
 electrical_products = [
     # --- สินค้าตู้คอนซูเมอร์แยกแบบ ---
     {
@@ -46,12 +46,14 @@ electrical_products = [
     {"name": "ปลั๊กเดี่ยว ยี่ห้อ zeberg", "name_en": "Zeberg Single Receptacle", "price": "40", "img": "/static/zeberg_single_outlet.jpg", "category": "switch_outlet", "has_variations": False},
     {"name": "ปลั๊กกราวด์เดี่ยว ยี่ห้อ zeberg", "name_en": "Zeberg Single Grounded Outlet", "price": "55", "img": "/static/zeberg_ground_single.jpg", "category": "switch_outlet", "has_variations": False},
     {"name": "ปลั๊กกราวด์คู่ยี่ห้อ Zeberg", "name_en": "Zeberg Duplex Grounded Outlet", "price": "85", "img": "/static/zeberg_ground_คู่.jpg", "category": "switch_outlet", "has_variations": False},
-
+    
+    # --- เซอร์กิตเบรกเกอร์ ตราช้าง ---
+    {
         "name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", 
         "name_en": "CHANG Safety Breaker 10A-30A", 
         "price": "55", 
         "img": "/static/chang.jpg", 
-        "category": "breaer", 
+        "category": "breaker", 
         "has_variations": False,
         "highlight": "สวิตช์ตัดตอนอัตโนมัติ (Safety Breaker) ตราช้าง (CHANG) ของแท้ 100% ป้องกันกระแสไฟฟ้าเกินและไฟฟ้าลัดวงจร ออกแบบสำหรับควบคุมเครื่องใช้ไฟฟ้าเฉพาะจุดได้อย่างปลอดภัย",
         "features": [
