@@ -75,7 +75,6 @@
             font-size: 2.2rem; color: var(--sk-orange); font-weight: 600; margin-bottom: 20px;
         }
 
-        /* ตารางข้อมูลร้านค้า */
         .shop-info-box {
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
@@ -94,7 +93,6 @@
             color: #8C8A87;
         }
 
-        /* กลุ่มปุ่มไอคอนติดต่อแบบในรูปตัวอย่าง (วงกลมสีขาว มีโลโก้สีแอปแท้ + กรอบวงกลมล้อมรอบ) */
         .contact-icons-group {
             display: flex;
             gap: 12px;
@@ -104,7 +102,7 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            border: 1px solid #CBD5E1; /* กรอบวงกลมบางๆ รอบนอก */
+            border: 1px solid #CBD5E1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -119,7 +117,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background-color: #FFFFFF; /* วงกลมสีขาวด้านใน */
+            background-color: #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -128,12 +126,10 @@
             font-weight: bold;
             font-size: 1.1rem;
         }
-        /* สีตามแอปต้นฉบับ */
-        .icon-tel-color { color: #0084FF; } /* สีฟ้าสำหรับโทรศัพท์ */
-        .icon-fb-color { color: #1877F2; }  /* สีฟ้า Facebook */
-        .icon-line-color { color: #00B900; }/* สีเขียว LINE */
+        .icon-tel-color { color: #0084FF; }
+        .icon-fb-color { color: #1877F2; }
+        .icon-line-color { color: #00B900; }
 
-        /* ส่วนแชร์ลิงก์และกล่อง Copy */
         .share-section {
             margin-top: 20px;
             padding-top: 15px;
@@ -238,25 +234,20 @@
             
             <div class="product-price-box">฿{{ product.price }} บาท</div>
 
-            <!-- ปุ่มสั่งซื้อผ่าน LINE -->
             <a href="https://lin.ee/ShzPAq2" target="_blank" class="buy-btn">
                 🟢 สั่งซื้อ / สอบถามรายละเอียดผ่าน LINE
             </a>
 
-            <!-- ข้อมูลร้านค้าและปุ่มไอคอนติดต่อดีไซน์วงกลมสีขาว -->
             <div class="shop-info-box">
                 <div class="shop-info-row">
                     <span>คุยกับร้านค้า</span>
                     <div class="contact-icons-group">
-                        <!-- ปุ่มโทร -->
                         <div class="contact-circle-wrap" title="โทรด่วน">
                             <a href="tel:0819667878" class="contact-icon-inner icon-tel-color">📞</a>
                         </div>
-                        <!-- ปุ่ม Facebook (เปลี่ยนเครื่องหมาย # เป็นลิงก์ FB ของร้าน) -->
                         <div class="contact-circle-wrap" title="Facebook ร้าน">
                             <a href="#" target="_blank" class="contact-icon-inner icon-fb-color">f</a>
                         </div>
-                        <!-- ปุ่ม LINE -->
                         <div class="contact-circle-wrap" title="LINE ร้าน">
                             <a href="https://lin.ee/ShzPAq2" target="_blank" class="contact-icon-inner icon-line-color">L</a>
                         </div>
@@ -276,7 +267,6 @@
                 </div>
             </div>
 
-            <!-- ส่วนแชร์ลิงก์โซเชียล -->
             <div class="share-section">
                 <span style="font-size: 0.85rem; color: #8C8A87; font-weight: 500;">Share :</span>
                 <div class="social-share-icons">
@@ -296,12 +286,18 @@
     <div class="product-detail-section">
         <div class="section-tab-title">รายละเอียดสินค้า</div>
         <div class="detail-content">
-            <p><strong>ไฮไลต์:</strong> อุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ผลิตจากวัสดุคุณภาพสูง ปลอดภัย ได้รับการยอมรับจากช่างและผู้รับเหมาทั่วไป</p>
+            <p><strong>ไฮไลต์:</strong> {{ product.highlight if product.highlight else "อุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ผลิตจากวัสดุคุณภาพสูง ปลอดภัย ได้รับการยอมรับจากช่างและผู้รับเหมาทั่วไป" }}</p>
             <p><strong>คุณสมบัติเด่น:</strong></p>
             <ul>
-                <li>ผ่านมาตรฐาน มอก. แท้ 100% ทนทานต่อการใช้งาน</li>
-                <li>พร้อมส่งทันทีจากคลังสินค้าอำเภอปากช่อง นครราชสีมา</li>
-                <li>มีราคาส่งพิเศษสำหรับงานโครงการและผู้รับเหมา</li>
+                {% if product.features %}
+                    {% for f in product.features %}
+                        <li>{{ f }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>ผ่านมาตรฐาน มอก. แท้ 100% ทนทานต่อการใช้งาน</li>
+                    <li>พร้อมส่งทันทีจากคลังสินค้าอำเภอปากช่อง นครราชสีมา</li>
+                    <li>มีราคาส่งพิเศษสำหรับงานโครงการและผู้รับเหมา</li>
+                {% endif %}
             </ul>
         </div>
     </div>
