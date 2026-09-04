@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link rel="icon" type="image/jpeg" href="/static/sk.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - หจก.ร้านไฟฟ้าแสงคูณ</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sk-navy: #0B1D3A;   /* สีน้ำเงินเข้มขรึมจากโลโก้ SK */
+            --sk-orange: #F39C12; /* สีส้มสายฟ้าจากโลโก้ SK */
+            --sk-bg: #F8FAFC;
+            --border-color: #E2E8F0;
+        }
+        body {
+            font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
+            background-color: var(--sk-bg);
+            margin: 0; padding: 0; color: #333;
+        }
+        .top-bar {
+            background-color: var(--sk-navy);
+            color: white; padding: 8px 20px; font-size: 0.85rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .verified-badge {
+            background: rgba(243, 156, 18, 0.2); color: var(--sk-orange); padding: 2px 8px; border-radius: 4px; font-weight: 500;
+        }
+        .navbar {
+            background-color: #FFFFFF; border-bottom: 1px solid var(--border-color); padding: 15px 20px;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;
+        }
+        .back-home {
+            text-decoration: none; color: var(--sk-navy); font-weight: 500; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;
+        }
+        .back-home:hover { color: var(--sk-orange); }
 
+        .product-main-wrapper {
+            max-width: 1200px; margin: 30px auto; background: #FFFFFF; padding: 30px; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(11, 29, 58, 0.04); display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+        }
+        @media(max-width: 768px) {
+            .product-main-wrapper { grid-template-columns: 1fr; padding: 15px; margin: 10px; }
+        }
+        .product-img-box img {
+            width: 100%; border-radius: 8px; object-fit: cover; border: 1px solid var(--border-color); aspect-ratio: 1/1;
+        }
+        .product-info h1 {
+            font-size: 1.8rem; color: var(--sk-navy); margin-top: 0; margin-bottom: 8px; font-weight: 600;
+        }
+        .product-sku { font-size: 0.9rem; color: #718096; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
+        
+        .product-price-box {
+            font-size: 2.2rem; color: var(--sk-orange); font-weight: 600; margin-bottom: 25px;
+        }
+        .shop-service-box {
+            background: #F8FAFC; border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; margin-bottom: 25px; font-size: 0.9rem; line-height: 1.8;
+        }
+        .buy-btn {
+            display: block; text-align: center; background-color: var(--sk-navy); color: white; text-decoration: none;
+            padding: 14px; border-radius: 8px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(11, 29, 58, 0.2);
+            transition: background 0.2s;
+        }
+        .buy-btn:hover { background-color: #112D5C; }
+
+        .product-detail-section {
+            max-width: 1200px; margin: 30px auto; background: #FFFFFF; padding: 30px; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(11, 29, 58, 0.04);
+        }
+        .section-tab-title {
+            background-color: var(--sk-navy); color: white; padding: 12px 20px; font-weight: 600; border-radius: 6px; margin-bottom: 20px;
+        }
+        .detail-content { font-size: 0.95rem; line-height: 1.8; color: #4A5568; }
+
+        .footer {
+            background-color: var(--sk-navy); color: #A0AEC0; padding: 40px 20px; margin-top: 60px; border-top: 4px solid var(--sk-orange);
+        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .footer h3 { color: white; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div><span class="verified-badge">✓ ร้านค้านี้ยืนยันตัวตนแล้ว</span> | บัตรประชาชน ✓ | บุ๊คแบงค์ ✓</div>
+        <div><span>📞 ฮอตไลน์ฝ่ายขาย: 081-966-7878</span></div>
+    </div>
+
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="/" class="back-home">◀ หน้าแรก</a>
+            <span style="font-weight: 600; color: var(--sk-navy);">หจก.ไฟฟ้าแสงคูณ - รายละเอียดสินค้า</span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="product-main-wrapper">
+        <div class="product-img-box">
+            <img src="{{ product.img }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <div class="product-sku">ชื่อภาษาอังกฤษ: {{ product.name_en }} | มาตรฐาน มอก. แท้</div>
+            
+            <div class="product-price-box">฿{{ product.price }} บาท</div>
+            
+            <div class="shop-service-box">
+                <div>📦 <strong>สถานะสินค้า:</strong> พร้อมส่ง (มีสต็อกที่คลังปากช่อง)</div>
+                <div>🚚 <strong>การจัดส่ง:</strong> จัดส่งด่วนทั่วไทย / มีบริการเก็บเงินปลายทาง</div>
+                <div>🧾 <strong>การออกบิล:</strong> สามารถออกใบกำกับภาษีเต็มรูปแบบได้</div>
+            </div>
+
+            <a href="https://lin.ee/ShzPAq2" target="_blank" class="buy-btn">
+                🛒 สั่งซื้อ / สอบถามรายละเอียดผ่าน LINE
+            </a>
+        </div>
+    </div>
+
+    <div class="product-detail-section">
+        <div class="section-tab-title">รายละเอียดสินค้า</div>
+        <div class="detail-content">
+            <p><strong>ไฮไลต์:</strong> อุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ผลิตจากวัสดุคุณภาพสูง ปลอดภัย ได้รับการยอมรับจากช่างและผู้รับเหมาทั่วไป</p>
+            <p><strong>คุณสมบัติเด่น:</strong></p>
+            <ul>
+                <li>ผ่านมาตรฐาน มอก. แท้ 100% ทนทานต่อการใช้งาน</li>
+                <li>พร้อมส่งทันทีจากคลังสินค้าอำเภอปากช่อง นครราชสีมา</li>
+                <li>มีราคาส่งพิเศษสำหรับงานโครงการและผู้รับเหมา</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>หจก.ไฟฟ้าแสงคูณ (ปากช่อง)</h3>
+                <p>ศูนย์รวมอุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ปลีก-ส่ง โคราช-ปากช่อง</p>
+            </div>
+            <div>
+                <h3>ติดต่อเรา</h3>
+                <p>โทร: 081-966-7878 | เปิดบริการทุกวัน จันทร์-เสาร์</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
