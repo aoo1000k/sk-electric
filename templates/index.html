@@ -140,20 +140,6 @@
             color: #2D2D2D;
         }
 
-        /* ปุ่มแท็กกรองด่วนสไตล์ช่าง (Quick Filter Tags) */
-        .quick-tag-bar {
-            max-width: 1200px; margin: 10px auto; padding: 0 20px;
-            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
-        }
-        .quick-tag-label { font-size: 0.85rem; font-weight: 600; color: #0B1D3A; margin-right: 4px; }
-        .quick-tag {
-            background: #FFFFFF; border: 1px solid #CBD5E1; color: #4A4A4A; padding: 5px 12px;
-            border-radius: 15px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
-        }
-        .quick-tag:hover, .quick-tag.active-tag {
-            background: #0B1D3A; color: #FFFFFF; border-color: #0B1D3A;
-        }
-
         .search-section {
             max-width: 1200px; margin: 15px auto; padding: 0 20px; display: flex; gap: 10px; flex-wrap: wrap;
         }
@@ -219,7 +205,7 @@
         .about-badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .about-badge-item { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px; border-radius: 10px; text-align: center; font-weight: 500; color: #0B1D3A; font-size: 0.9rem; }
 
-        /* ปุ่มลอยติดต่อด่วนมุมขวาล่าง */
+        /* ดีไซน์ปุ่มลอยติดต่อด่วนมุมขวาล่างให้เนียนสวยสไตล์ LINE */
         .floating-contact-group {
             position: fixed;
             bottom: 25px; right: 25px;
@@ -229,15 +215,19 @@
             z-index: 998;
         }
         .float-btn {
-            width: 55px; height: 55px; border-radius: 50%;
+            width: 52px; height: 52px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.5rem; text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            color: white; font-size: 1.4rem; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid #FFFFFF;
         }
-        .float-btn:hover { transform: scale(1.1); }
-        .float-line { background-color: #00B900; }
-        .float-tel { background-color: #0084FF; }
+        .float-btn:hover { 
+            transform: scale(1.08); 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        .float-line { background: linear-gradient(135deg, #00B900, #009900); }
+        .float-tel { background: linear-gradient(135deg, #0084FF, #0066CC); }
 
         /* Widget ตะกร้าลอยมุมขวาบน */
         .floating-cart-widget {
@@ -377,7 +367,7 @@
         <a href="https://lin.ee/ShzPAq2" target="_blank" class="promo-btn">📋 ส่งรายการขอใบเสนอราคา</a>
     </div>
 
-    <!-- ปุ่มลอยติดต่อด่วนมุมขวาล่าง -->
+    <!-- ปุ่มลอยติดต่อด่วนมุมขวาล่าง ดีไซน์พรีเมียมสไตล์ LINE และโทรด่วน -->
     <div class="floating-contact-group">
         <a href="tel:0819667878" class="float-btn float-tel" title="โทรด่วนฝ่ายขาย">📞</a>
         <a href="https://lin.ee/ShzPAq2" target="_blank" class="float-btn float-line" title="แชท LINE ร้าน">💬</a>
@@ -467,17 +457,6 @@
         <a href="/?cat=industry_equipment" class="cat-btn {% if current_cat == 'industry_equipment' %}active{% endif %}">อุปกรณ์ไฟฟ้าโรงงาน</a>
         <a href="/?cat=cable_by_order" class="cat-btn {% if current_cat == 'cable_by_order' %}active{% endif %}">สายไฟสั่งตัดพิเศษ</a>
         <a href="/?cat=mdb" class="cat-btn {% if current_cat == 'mdb' %}active{% endif %}">ตู้MDBสั่งประกอบ</a>
-    </div>
-
-    <!-- ปุ่มแท็กกรองด่วนสำหรับช่าง (Quick Filter Tags) -->
-    <div class="quick-tag-bar">
-        <span class="quick-tag-label">⚡ ค้นหาด่วน:</span>
-        <button class="quick-tag" onclick="filterByTag('ทั้งหมด')">ทั้งหมด</button>
-        <button class="quick-tag" onclick="filterByTag('สายไฟ')">สายไฟ</button>
-        <button class="quick-tag" onclick="filterByTag('เบรกเกอร์')">เบรกเกอร์</button>
-        <button class="quick-tag" onclick="filterByTag('ตู้คอนซูเมอร์')">ตู้คอนซูเมอร์</button>
-        <button class="quick-tag" onclick="filterByTag('สวิตช์')">สวิตช์-ปลั๊ก</button>
-        <button class="quick-tag" onclick="filterByTag('แค้ม')">ท่อและอุปกรณ์</button>
     </div>
 
     <!-- ช่องค้นหาและปุ่มคัดลอกรายการส่ง LINE -->
@@ -663,7 +642,6 @@
             document.getElementById('cartModalOverlay').style.display = 'none';
         }
 
-        // ฟังก์ชันส่งออเดอร์จากตะกร้าสินค้าทั้งหมดเข้า LINE (ก๊อปปี้อัตโนมัติแล้วเปิดแชท)
         function checkoutCart() {
             if (cart.length === 0) {
                 alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณาเพิ่มสินค้าก่อนครับ");
@@ -692,18 +670,6 @@
                 alert("กรุณาคัดลอกข้อความและส่งทาง LINE ครับ");
                 window.open('https://lin.ee/ShzPAq2', '_blank');
             });
-        }
-
-        // ฟังก์ชันกรองสินค้าด้วยปุ่มแท็กด่วน
-        function filterByTag(keyword) {
-            var searchInput = document.getElementById('searchInput');
-            if (keyword === 'ทั้งหมด') {
-                searchInput.value = '';
-            } else {
-                searchInput.value = keyword;
-            }
-            // จำลองการพิมพ์ค้นหาอัตโนมัติ
-            searchInput.dispatchEvent(new Event('input'));
         }
 
         document.getElementById('searchInput').addEventListener('input', function(e) {
@@ -735,6 +701,7 @@
             var count = 0;
 
             visibleCards.forEach(function(card) {
+                ไล่หาข้อมูลและแปลงสเปก...
                 if (card.style.display !== 'none') {
                     var n = card.querySelector('.product-name').innerText.trim();
                     var p = card.querySelector('.product-price').innerText.trim();
