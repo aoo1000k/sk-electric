@@ -16,22 +16,15 @@ electrical_products = [
 
 @app.route('/')
 def home():
-    # 1. ระบบเลือกภาษา (ดึงค่าจากปุ่มกด TH/EN ถ้าไม่เลือกจะตั้งเป็น th เริ่มต้น)
     lang = request.args.get('lang', 'th')
-    
-    # 2. ระบบค้นหา (ดึงข้อความจากช่อง Search ที่ลูกค้าพิมพ์เข้ามา)
     search_query = request.args.get('search', '').strip().lower()
-    
-    # 3. ระบบกรองหมวดหมู่เดิม
     selected_category = request.args.get('cat', 'all')
     
-    # กรองหมวดหมู่สินค้าก่อน
     if selected_category == 'all':
         filtered_products = electrical_products
     else:
         filtered_products = [p for p in electrical_products if p['category'] == selected_category]
         
-    # ระบบค้นหาอัจฉริยะ: ค้นหาคำค้นจากทั้งชื่อไทยและอังกฤษ (เช่น พิมพ์ vaf หรือ thw ก็เจอหมด)
     if search_query:
         filtered_products = [
             p for p in filtered_products 
@@ -39,6 +32,15 @@ def home():
         ]
         
     return render_template('index.html', products=filtered_products, current_cat=selected_category, current_lang=lang, search_query=search_query, shop_name="ร้านไฟฟ้าแสงคูณ")
+
+# ⭐ เพิ่มฟังก์ชันนี้เพื่อเปิดหน้าดูรายละเอียดสินค้าแต่ละชิ้น
+@app.route('/product/<int:index>')
+def product_detail(index):
+    if 0 <= index < len(electrical_products):
+        current_product = electrical_products[index]
+        return render_template('product.html', product=current_product)
+    else:
+        return "ไม่พบสินค้าที่คุณต้องการ", 404
 
 if __name__ == '__main__':
     app.run(debug=False, use_reloader=False)
