@@ -2,32 +2,45 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# รายการสินค้าพร้อมข้อมูลรายละเอียดเชิงลึก
+# รายการสินค้า (แยกสินค้าที่มีหลายตัวเลือกออกมาเป็นชิ้นเดี่ยวๆ ชัดเจน เพื่อความง่ายและแม่นยำ)
 electrical_products = [
+    # --- สินค้าตู้คอนซูเมอร์แยกแบบ ---
     {
-        "name": "ตู้คอนซูเมอร์ 4 ช่อง ยี่ห้อ BF", 
-        "name_en": "BF Consumer Unit 4 Ways", 
+        "name": "ตู้คอนซูเมอร์ 4 ช่อง ยี่ห้อ BF (แบบธรรมดา / ไม่กันดูด)", 
+        "name_en": "BF Consumer Unit 4 Ways (Standard)", 
         "category": "consumer_unit",
         "img": "/static/bf_consumer4.jpg",
         "price": "480",
-        "has_variations": True,
-        "variations": [
-            {"name": "แบบธรรมดา (ไม่กันดูด)", "price": "480"},
-            {"name": "แบบกันดูด (RCBO)", "price": "590"}
-        ]
+        "has_variations": False
     },
     {
-        "name": "แค้มใบเมทัลลิค", 
-        "name_en": "Metallic Pipe Clip", 
+        "name": "ตู้คอนซูเมอร์ 4 ช่อง ยี่ห้อ BF (แบบกันดูด RCBO)", 
+        "name_en": "BF Consumer Unit 4 Ways (RCBO)", 
+        "category": "consumer_unit",
+        "img": "/static/bf_consumer4.jpg",
+        "price": "590",
+        "has_variations": False
+    },
+    
+    # --- สินค้าแค้มใบเมทัลลิคแยกแบบ ---
+    {
+        "name": "แค้มใบเมทัลลิค (แบบ 1 สกรู)", 
+        "name_en": "Metallic Pipe Clip (1 Screw)", 
         "category": "pipe",
         "img": "/static/metallic_clamp.jpg",
         "price": "45",
-        "has_variations": True,
-        "variations": [
-            {"name": "แบบ 1 สกรู", "price": "45"},
-            {"name": "แบบ 2 สกรู", "price": "98"}
-        ]
+        "has_variations": False
     },
+    {
+        "name": "แค้มใบเมทัลลิค (แบบ 2 สกรู)", 
+        "name_en": "Metallic Pipe Clip (2 Screws)", 
+        "category": "pipe",
+        "img": "/static/metallic_clamp.jpg",
+        "price": "98",
+        "has_variations": False
+    },
+    
+    # --- สินค้าอื่นๆ ทั่วไป ---
     {"name": "สาย THW #1.5 ยี่ห้อ ICON", "name_en": "ICON THW Wire #1.5", "price": "350", "img": "/static/icon_thw15.jpg", "category": "wire", "has_variations": False},
     {"name": "สวิทช์ ยี่ห้อ zeberg", "name_en": "Zeberg Switch", "price": "35", "img": "/static/zeberg_switch.jpg", "category": "switch_outlet", "has_variations": False},
     {"name": "ปลั๊กเดี่ยว ยี่ห้อ zeberg", "name_en": "Zeberg Single Receptacle", "price": "40", "img": "/static/zeberg_single_outlet.jpg", "category": "switch_outlet", "has_variations": False},
@@ -44,7 +57,7 @@ electrical_products = [
     {
         "name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", 
         "name_en": "CHANG Safety Breaker 10A-30A", 
-        "price": "55", 
+        "price": "120", 
         "img": "/static/chang.jpg", 
         "category": "breaker", 
         "has_variations": False,
