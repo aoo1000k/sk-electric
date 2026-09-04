@@ -46,20 +46,12 @@ electrical_products = [
     {"name": "ปลั๊กเดี่ยว ยี่ห้อ zeberg", "name_en": "Zeberg Single Receptacle", "price": "40", "img": "/static/zeberg_single_outlet.jpg", "category": "switch_outlet", "has_variations": False},
     {"name": "ปลั๊กกราวด์เดี่ยว ยี่ห้อ zeberg", "name_en": "Zeberg Single Grounded Outlet", "price": "55", "img": "/static/zeberg_ground_single.jpg", "category": "switch_outlet", "has_variations": False},
     {"name": "ปลั๊กกราวด์คู่ยี่ห้อ Zeberg", "name_en": "Zeberg Duplex Grounded Outlet", "price": "85", "img": "/static/zeberg_ground_คู่.jpg", "category": "switch_outlet", "has_variations": False},
-    {"name": "สายไฟ IEC01 (THW) 1x1.5 sq.mm. (100 เมตร)", "name_en": "IEC01 (THW) Wire 1x1.5 sq.mm. (100m)", "price": "478", "img": "/static/thw15.jpg", "category": "wire", "has_variations": False},
-    {"name": "สายไฟ IEC01 (THW) 1x2.5 sq.mm. (100 เมตร)", "name_en": "IEC01 (THW) Wire 1x2.5 sq.mm. (100m)", "price": "850", "img": "/static/thw25.jpg", "category": "wire", "has_variations": False},
-    {"name": "สายไฟ VAF 2x1.5 sq.mm. (100 เมตร)", "name_en": "VAF Wire 2x1.5 sq.mm. (100m)", "price": "1,200", "img": "/static/vaf15.jpg", "category": "wire", "has_variations": False},
-    {"name": "สายไฟ VAF 2x2.5 sq.mm. (100 เมตร)", "name_en": "VAF Wire 2x2.5 sq.mm. (100m)", "price": "1,800", "img": "/static/vaf25.jpg", "category": "wire", "has_variations": False},
-    {"name": "สายไฟ NYY 1x1.5 sq.mm. (100 เมตร)", "name_en": "NYY Wire 1x1.5 sq.mm. (100m)", "price": "1,450", "img": "/static/nyy15.jpg", "category": "wire", "has_variations": False},
-    {"name": "สายไฟ NYY 4x10 sq.mm. (ตัดเมตร)", "name_en": "NYY Wire 4x10 sq.mm. (Per Meter)", "price": "280 / เมตร", "img": "/static/nyy410.jpg", "category": "wire", "has_variations": False},
-    {"name": "ท่อร้อยสายไฟ PVC ขนาด 1/2 นิ้ว (สีเหลือง)", "name_en": "PVC Conduit 1/2 Inch (Yellow)", "price": "45", "img": "/static/pvc12.jpg", "category": "pipe", "has_variations": False},
-    {"name": "เบรกเกอร์ 2P 20A (ช้าง/Panasonic)", "name_en": "Circuit Breaker 2P 20A", "price": "120", "img": "/static/breaker20.jpg", "category": "breaker", "has_variations": False},
-    {
+
         "name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", 
         "name_en": "CHANG Safety Breaker 10A-30A", 
-        "price": "120", 
+        "price": "55", 
         "img": "/static/chang.jpg", 
-        "category": "breaker", 
+        "category": "breaer", 
         "has_variations": False,
         "highlight": "สวิตช์ตัดตอนอัตโนมัติ (Safety Breaker) ตราช้าง (CHANG) ของแท้ 100% ป้องกันกระแสไฟฟ้าเกินและไฟฟ้าลัดวงจร ออกแบบสำหรับควบคุมเครื่องใช้ไฟฟ้าเฉพาะจุดได้อย่างปลอดภัย",
         "features": [
