@@ -643,14 +643,15 @@
             document.getElementById('cartModalOverlay').style.display = 'none';
         }
 
-        // ฟังก์ชันส่งออเดอร์เข้า LINE อัตโนมัติผ่าน URL Encoding
+        // ฟังก์ชันสั่งซื้อ (ก๊อปปี้ข้อความออเดอร์แล้วเด้งเปิดแชท LINE ของร้านโดยตรง)
         function checkoutCart() {
             if (cart.length === 0) {
                 alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณาเพิ่มสินค้าก่อนครับ");
                 return;
             }
 
-            let message = "🛒 แจ้งสั่งซื้อสินค้าจากเว็บไซต์ หจก.ร้านไฟฟ้าแสงคูณ:\n\n";
+            let message = "🛒 *แจ้งสั่งซื้อสินค้า / ขอใบเสนอราคา*\n";
+            message += "----------------------------------------\n";
             let grandTotal = 0;
             
             cart.forEach((item, index) => {
@@ -659,16 +660,18 @@
                 message += `${index + 1}. ${item.name} x ${item.qty} = ฿${itemTotal.toLocaleString()}\n`;
             });
             
-            message += `\n💰 ราคารวมทั้งสิ้น: ฿${grandTotal.toLocaleString()} บาท\n`;
-            message += "📍 (ส่งถึง: หจก.ร้านไฟฟ้าแสงคูณ ปากช่อง)\n\n";
-            message += "รบกวนแอดมินสรุปยอดรวมและค่าจัดส่งให้ด้วยครับ/ค่ะ";
+            message += "----------------------------------------\n";
+            message += `💰 *ราคารวมทั้งสิ้น: ฿${grandTotal.toLocaleString()} บาท*\n`;
+            message += "📍 *(ส่งถึง: หจก.ร้านไฟฟ้าแสงคูณ ปากช่อง)*\n\n";
+            message += "👉 รบกวนแอดมินสรุปยอดโอนและค่าจัดส่งให้ด้วยครับ/ค่ะ";
 
-            // แปลงข้อความให้ฝังลงในลิงก์ LINE ได้ทันทีโดยอัตโนมัติ
-            let encodedMessage = encodeURIComponent(message);
-            let lineUrl = `https://line.me/R/msg/text/?${encodedMessage}`;
-
-            // สั่งเปิดหน้าแอป LINE พร้อมข้อความออเดอร์ทันที
-            window.open(lineUrl, '_blank');
+            navigator.clipboard.writeText(message).then(function() {
+                alert("✅ คัดลอกรายการสั่งซื้อเรียบร้อยแล้ว!\n\n👉 ระบบกำลังพาท่านไปที่แชท LINE ร้าน...\nกรุณากด 'วาง' (Paste) ในช่องแชทเพื่อส่งออเดอร์ให้ร้านได้เลยครับ!");
+                window.open('https://lin.ee/ShzPAq2', '_blank');
+            }).catch(function(err) {
+                alert("กรุณาคัดลอกข้อความและส่งทาง LINE ครับ");
+                window.open('https://lin.ee/ShzPAq2', '_blank');
+            });
         }
 
         document.getElementById('searchInput').addEventListener('input', function(e) {
@@ -715,8 +718,10 @@
 
             textToCopy += "\nรบกวนสอบถามราคารวมและค่าจัดส่งครับ/ค่ะ";
 
-            let encodedText = encodeURIComponent(textToCopy);
-            window.open(`https://line.me/R/msg/text/?${encodedText}`, '_blank');
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert("📋 คัดลอกรายการสินค้าสำเร็จ! นำไปวางในแชท LINE เพื่อส่งให้ร้านได้เลยครับ");
+                window.open('https://lin.ee/ShzPAq2', '_blank');
+            });
         }
     </script>
 </body>
