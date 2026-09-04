@@ -37,11 +37,26 @@
 
         .top-bar {
             background-color: var(--sk-navy);
-            color: white; padding: 8px 20px; font-size: 0.85rem;
+            color: white; padding: 8px 20px; font-size: 0.9rem;
             display: flex; justify-content: space-between; align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
         }
-        .verified-badge {
-            background: rgba(197, 137, 64, 0.2); color: #F39C12; padding: 2px 8px; border-radius: 4px; font-weight: 500;
+        .running-text {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        .running-text a {
+            color: #F39C12;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .running-text a:hover {
+            color: #FFFFFF;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .navbar {
@@ -99,91 +114,18 @@
             align-items: center;
         }
         .contact-circle-wrap {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid #CBD5E1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            transition: transform 0.2s;
+            width: 44px; height: 44px; border-radius: 50%; border: 1px solid #CBD5E1;
+            display: flex; align-items: center; justify-content: center; background: transparent; transition: transform 0.2s;
         }
-        .contact-circle-wrap:hover {
-            transform: scale(1.08);
-            border-color: var(--sk-orange);
-        }
+        .contact-circle-wrap:hover { transform: scale(1.08); border-color: var(--sk-orange); }
         .contact-icon-inner {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
+            width: 36px; height: 36px; border-radius: 50%; background-color: #FFFFFF;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            text-decoration: none; font-weight: bold; font-size: 1.1rem;
         }
         .icon-tel-color { color: #0084FF; }
         .icon-fb-color { color: #1877F2; }
         .icon-line-color { color: #00B900; }
-
-        .share-section {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px dashed var(--border-color);
-        }
-        .social-share-icons {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin: 10px 0;
-        }
-        .social-share-circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid #CBD5E1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            background: #FFFFFF;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-        .share-input-group {
-            display: flex;
-            margin-top: 8px;
-        }
-        .share-input {
-            flex: 1;
-            padding: 10px 14px;
-            font-size: 0.85rem;
-            border: 1px solid var(--border-color);
-            background: #F9F9F9;
-            border-radius: 6px 0 0 6px;
-            color: #6E6C69;
-            outline: none;
-        }
-        .copy-btn {
-            background-color: #EFEAE2;
-            color: #4A4A4A;
-            border: 1px solid var(--border-color);
-            border-left: none;
-            padding: 0 18px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border-radius: 0 6px 6px 0;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .copy-btn:hover {
-            background-color: #D9C3B0;
-        }
 
         .buy-btn {
             display: block; text-align: center; background-color: #2ECC71; color: white; text-decoration: none;
@@ -197,10 +139,22 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid var(--border-color);
         }
         .section-tab-title {
-            background-color: var(--sk-navy); color: white; padding: 12px 20px; font-weight: 600; border-radius: 8px; margin-bottom: 20px;
-            border-left: 5px solid var(--sk-orange);
+            background-color: var(--sk-navy); color: white; padding: 12px 20px; font-weight: 600; border-radius: 8px; margin-bottom: 25px;
+            border-left: 5px solid var(--sk-orange); font-size: 1.1rem;
         }
-        .detail-content { font-size: 0.95rem; line-height: 1.8; color: #6E6C69; }
+        .detail-row-grid {
+            display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; align-items: center;
+        }
+        .detail-row-grid:last-of-type { border-bottom: none; margin-bottom: 15px; }
+        .detail-label { color: #8C8A87; font-weight: 500; }
+        .detail-value { color: #2D2D2D; font-weight: 400; }
+
+        .spec-description-box {
+            background: #F8FAFC; border: 1px solid #ECE7E1; border-radius: 12px; padding: 20px; margin-top: 15px; line-height: 1.8; color: #4A4A4A;
+        }
+        .spec-description-box h4 { margin-top: 0; color: var(--sk-navy); font-size: 1.05rem; margin-bottom: 10px; }
+        .spec-description-box ul { margin: 0; padding-left: 20px; }
+        .spec-description-box li { margin-bottom: 6px; }
 
         .footer {
             background-color: #EFEAE2; color: #5A5855; padding: 40px 20px; margin-top: 60px; border-top: 1px solid var(--border-color);
@@ -211,6 +165,7 @@
 </head>
 <body>
 
+    <!-- แถบด้านบนสุด ข้อความวิ่ง + ลิงก์ Google Maps และเบอร์โทร -->
     <div class="top-bar">
         <div class="running-text">
             📍 ลูกค้าสามารถมาดูสินค้าจริงได้ที่หน้าร้าน <a href="https://maps.app.goo.gl/eojMTLoHWLQGj4BZ7" target="_blank">👉คลิกดูแผนที่ Google Maps ที่นี่เลยครับ</a> 🚚 มีบริการจัดส่งด่วนในเขตปากช่อง-เขาใหญ่
@@ -248,7 +203,7 @@
                             <a href="tel:0819667878" class="contact-icon-inner icon-tel-color">📞</a>
                         </div>
                         <div class="contact-circle-wrap" title="Facebook ร้าน">
-                            <a href="#" target="_blank" class="contact-icon-inner icon-fb-color">f</a>
+                            <a href="https://www.facebook.com/share/1Db6cb5d45/?mibextid=wwXIfr" target="_blank" class="contact-icon-inner icon-fb-color">f</a>
                         </div>
                         <div class="contact-circle-wrap" title="LINE ร้าน">
                             <a href="https://lin.ee/ShzPAq2" target="_blank" class="contact-icon-inner icon-line-color">L</a>
@@ -265,40 +220,43 @@
                 </div>
                 <div class="shop-info-row">
                     <span>สถานะสินค้า</span>
-                    <span style="color: #27AE60; font-weight: 600;">พร้อมส่ง</span>
+                    <span style="color: #27AE60; font-weight: 600;">พร้อมส่ง (คลังปากช่อง)</span>
                 </div>
             </div>
-
-            <div class="share-section">
-                <span style="font-size: 0.85rem; color: #8C8A87; font-weight: 500;">Share :</span>
-                <div class="social-share-icons">
-                    <a href="#" target="_blank" class="social-share-circle" style="color: #1877F2;" title="แชร์ Facebook">f</a>
-                    <a href="#" target="_blank" class="social-share-circle" style="color: #000000;" title="แชร์ X">𝕏</a>
-                    <a href="#" target="_blank" class="social-share-circle" style="color: #00B900;" title="แชร์ LINE">L</a>
-                </div>
-                <div class="share-input-group">
-                    <input type="text" id="shareLink" class="share-input" readonly>
-                    <button onclick="copyShareLink()" class="copy-btn">COPY</button>
-                </div>
-            </div>
-
         </div>
     </div>
 
     <div class="product-detail-section">
         <div class="section-tab-title">รายละเอียดสินค้า</div>
-        <div class="detail-content">
-            <p><strong>ไฮไลต์:</strong> {{ product.highlight if product.highlight else "อุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ผลิตจากวัสดุคุณภาพสูง ปลอดภัย ได้รับการยอมรับจากช่างและผู้รับเหมาทั่วไป" }}</p>
-            <p><strong>คุณสมบัติเด่น:</strong></p>
+        
+        <div class="detail-row-grid">
+            <div class="detail-label">ไฮไลต์</div>
+            <div class="detail-value">
+                {{ product.highlight if product.highlight else "อุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ผลิตจากวัสดุคุณภาพสูง ปลอดภัย ได้รับการยอมรับจากช่างและผู้รับเหมาทั่วไป" }}
+            </div>
+        </div>
+        
+        <div class="detail-row-grid">
+            <div class="detail-label">ข้อมูลจำเพาะ</div>
+            <div class="detail-value" style="display: flex; gap: 40px; flex-wrap: wrap;">
+                <div>📦 <strong>น้ำหนักมาตรฐาน:</strong> อุปกรณ์คัดเกรดคุณภาพ</div>
+                <div>📅 <strong>สถานะ:</strong> พร้อมจัดส่งด่วน</div>
+            </div>
+        </div>
+
+        <div class="spec-description-box">
+            <h4>📋 รายละเอียดและคุณสมบัติเชิงลึก</h4>
+            <p>{{ product.highlight if product.highlight else "อุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ทนทานต่อการใช้งาน รองรับงานเดินระบบไฟฟ้าภายในบ้าน อาคารพาณิชย์ และโรงงานอุตสาหกรรม" }}</p>
             <ul>
                 {% if product.features %}
                     {% for f in product.features %}
                         <li>{{ f }}</li>
                     {% endfor %}
                 {% else %}
-                    <li>ผ่านมาตรฐาน มอก. แท้ 100% ทนทานต่อการใช้งาน</li>
-                    <li>พร้อมส่งทันทีจากคลังสินค้าอำเภอปากช่อง นครราชสีมา</li>
-                    <li>มีราคาส่งพิเศษสำหรับงานโครงการและผู้รับเหมา</li>
+                    <li>ผ่านมาตรฐาน มอก. แท้ 100% ปลอดภัย ทนทานต่อกระแสไฟฟ้าสูง</li>
+                    <li>พร้อมจัดส่งด่วนเข้าไซต์งานในเขตปากช่อง-เขาใหญ่ และพื้นที่ใกล้เคียง</li>
+                    <li>มีบริการออกใบกำกับภาษีเต็มรูปแบบสำหรับผู้รับเหมาและบริษัท</li>
+                    <li>คัดสรรวัสดุเกรดพรีเมียม ช่วยให้ช่างทำงานไว ติดตั้งง่าย ได้มาตรฐานวิศวกรรม</li>
                 {% endif %}
             </ul>
         </div>
@@ -316,19 +274,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('shareLink').value = window.location.href;
-
-        function copyShareLink() {
-            var copyText = document.getElementById("shareLink");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value).then(function() {
-                alert("📋 คัดลอกลิงก์สินค้าสำเร็จ!");
-            });
-        }
-    </script>
 
 </body>
 </html>
