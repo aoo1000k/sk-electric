@@ -10,33 +10,11 @@
     <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        .category-menu {
-            display: grid;
-            grid-template-rows: repeat(2, auto);
-            grid-auto-flow: column;
-            max-width: 1200px;
-            margin: 30px auto 10px auto;
-            padding: 0 20px 10px 20px;
-            gap: 10px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-        }
-        .cat-btn {
-            padding: 8px 18px;
-            background: #EFEAE2;
-            border: none;
-            border-radius: 20px;
-            text-decoration: none;
-            color: #6E6C69;
-            font-size: 0.9rem;
-            font-weight: 500;
-            white-space: nowrap;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-        .cat-btn:hover, .cat-btn.active {
-            background: #D9C3B0;
-            color: #2D2D2D;
+        :root {
+            --sk-navy: #0B1D3A;     /* สีน้ำเงินเข้มจากโลโก้ SK */
+            --sk-orange: #C58940;   /* สีส้มทองละมุน */
+            --sk-bg: #FAF6F0;       /* สีพื้นหลังครีมละมุน */
+            --border-color: #ECE7E1;
         }
 
         body::before {
@@ -51,64 +29,102 @@
             z-index: -1;
         }
 
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr)!important;
-                gap: 12px;
-                padding: 0 10px;
-            }
-            .product-name {
-                font-size: 0.85rem;
-                height: auto;
-            }
-            .product-price {
-                font-size: 0.95rem;
-                margin-bottom: 8px;
-            }
-        }
-
         body {
             font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
-            background-color: #FAF6F0;
+            background-color: var(--sk-bg);
             margin: 0; padding: 0;
             color: #4A4A4A;
         }
 
         .promo-banner {
-            background-color: #C58940;
+            background-color: var(--sk-navy);
             color: white; text-align: center;
             padding: 10px 20px; font-size: 0.9rem; font-weight: 500;
+            border-bottom: 3px solid var(--sk-orange);
         }
 
-        .header {
-            text-align: left; max-width: 1200px; margin: 0 auto; padding: 30px 20px 20px 20px;
+        /* แถบหัวเว็บและโลโก้ */
+        .main-header {
+            max-width: 1200px; margin: 0 auto; padding: 25px 20px;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;
         }
-        .header h1 {
-            color: #2D2D2D; font-size: 2.2rem; font-weight: 600; margin: 0 0 8px 0;
+        .brand-box {
+            display: flex; align-items: center; gap: 15px;
         }
-        .subtitle {
-            color: #8C8A87; font-size: 1rem; font-weight: 300; margin: 0;
+        .brand-box img {
+            width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 2px solid var(--sk-navy);
         }
-
-        .info-bar {
-            max-width: 1200px; margin: 10px auto; padding: 0 20px; display: flex; gap: 20px; flex-wrap: wrap;
+        .brand-title h1 {
+            color: var(--sk-navy); font-size: 1.8rem; font-weight: 600; margin: 0 0 4px 0;
         }
-        .info-item {
-            background-color: #EFEAE2; color: #6E6C69; font-size: 0.85rem; padding: 6px 14px; border-radius: 20px;
-        }
-
-        .section-title {
-            max-width: 1200px; margin: 30px auto 10px auto; padding: 0 20px;
-            font-size: 1.3rem; font-weight: 600; color: #2D2D2D;
-            display: flex; align-items: center; gap: 8px;
+        .brand-subtitle {
+            color: #8C8A87; font-size: 0.9rem; font-weight: 300; margin: 0;
         }
 
+        /* แถบกรองค้นหาด้านบนสุดสไตล์เว็บมืออาชีพ (แบบในรูปตัวอย่าง) */
+        .filter-bar-container {
+            max-width: 1200px; margin: 0 auto 20px auto; padding: 0 20px;
+        }
+        .filter-bar {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+            min-width: 180px;
+        }
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #8C8A87;
+        }
+        .filter-input, .filter-select {
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: #F8FAFC;
+            outline: none;
+            color: #2D2D2D;
+        }
+        .filter-input:focus, .filter-select:focus {
+            border-color: var(--sk-orange);
+        }
+        .search-action-btn {
+            background-color: var(--sk-navy);
+            color: white;
+            border: none;
+            padding: 0 24px;
+            height: 42px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            align-self: flex-end;
+        }
+        .search-action-btn:hover {
+            background-color: #112D5C;
+        }
+
+        /* ตารางสินค้า Grid 4 คอลัมน์ */
         .product-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 10px auto 40px auto; padding: 0 20px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 20px auto 50px auto; padding: 0 20px;
         }
         .product-card {
             background: #FFFFFF; border-radius: 16px; padding: 12px; text-align: left;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid #ECE7E1; display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between;
             transition: transform 0.2s ease; position: relative;
         }
         .product-card:hover { transform: translateY(-4px); }
@@ -116,10 +132,10 @@
             width: 100%; height: auto; border-radius: 12px; object-fit: cover; aspect-ratio: 1 / 1;
         }
         .product-name {
-            font-size: 0.95rem; font-weight: 500; color: #333333; margin: 12px 0 4px 0; height: 40px; overflow: hidden; line-height: 1.4;
+            font-size: 0.95rem; font-weight: 500; color: #2D2D2D; margin: 12px 0 4px 0; height: 40px; overflow: hidden; line-height: 1.4;
         }
         .product-price {
-            font-size: 1.05rem; color: #C58940; font-weight: 600; margin-bottom: 10px;
+            font-size: 1.1rem; color: var(--sk-orange); font-weight: 600; margin-bottom: 12px;
         }
 
         .card-btn-group {
@@ -133,17 +149,17 @@
         .line-btn:hover { background-color: #27AE60; }
         
         .add-cart-btn {
-            background-color: #34495E; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;
+            background-color: var(--sk-navy); color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;
             display: flex; align-items: center; gap: 4px;
         }
-        .add-cart-btn:hover { background-color: #2C3E50; }
+        .add-cart-btn:hover { background-color: #112D5C; }
 
-        /* ไอคอนตะกร้าลอยมุมขวาบน (แบบในรูปที่ 2) */
+        /* Widget ตะกร้าลอยมุมขวาบน */
         .floating-cart-widget {
             position: fixed;
             top: 100px; right: 0;
             background: #FFFFFF;
-            border: 1px solid #ECE7E1;
+            border: 1px solid var(--border-color);
             border-right: none;
             border-radius: 8px 0 0 8px;
             padding: 10px 14px;
@@ -153,7 +169,7 @@
             cursor: pointer;
         }
 
-        /* ดีไซน์หน้าต่างป๊อปอัปตะกร้าสินค้า (Modal เหมือนรูปที่ 1) */
+        /* ป๊อปอัปตะกร้าสินค้า (Modal) */
         .cart-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -166,7 +182,7 @@
         .cart-modal-container {
             background: #FFFFFF;
             width: 90%; max-width: 650px;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             animation: fadeIn 0.2s ease;
@@ -180,10 +196,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #ECE7E1;
+            border-bottom: 1px solid var(--border-color);
             font-size: 1.2rem;
             font-weight: 600;
-            color: #2D2D2D;
+            color: var(--sk-navy);
         }
         .cart-close-btn {
             background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #2D2D2D;
@@ -199,39 +215,25 @@
             gap: 15px;
             background: #F8FAFC;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 12px;
-            border: 1px solid #E2E8F0;
+            border: 1px solid var(--border-color);
         }
         .cart-item-row img {
-            width: 70px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid #CBD5E1;
+            width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color);
         }
-        .cart-item-info {
-            flex: 1;
-        }
-        .cart-item-name {
-            font-size: 0.95rem; font-weight: 500; color: #2D2D2D; margin-bottom: 4px;
-        }
-        .cart-item-price {
-            font-size: 1.05rem; color: #0B1D3A; font-weight: 600;
-        }
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .qty-btn {
-            background: #CBD5E1; border: none; width: 28px; height: 28px; border-radius: 4px; font-weight: bold; cursor: pointer;
-        }
-        .delete-btn {
-            background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #94A3B8; margin-left: 10px;
-        }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { font-size: 0.95rem; font-weight: 500; color: #2D2D2D; margin-bottom: 4px; }
+        .cart-item-price { font-size: 1.05rem; color: var(--sk-navy); font-weight: 600; }
+        .cart-item-controls { display: flex; align-items: center; gap: 8px; }
+        .qty-btn { background: #EFEAE2; border: none; width: 28px; height: 28px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .delete-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #94A3B8; margin-left: 10px; }
         .delete-btn:hover { color: #EF4444; }
 
         .cart-modal-footer {
             padding: 20px;
             background: #F8FAFC;
-            border-top: 1px solid #ECE7E1;
+            border-top: 1px solid var(--border-color);
         }
         .cart-total-row {
             display: flex;
@@ -240,7 +242,7 @@
             margin-bottom: 15px;
         }
         .cart-total-label { font-size: 1.1rem; font-weight: 600; color: #2D2D2D; }
-        .cart-total-price { font-size: 1.5rem; font-weight: 700; color: #0B1D3A; }
+        .cart-total-price { font-size: 1.5rem; font-weight: 700; color: var(--sk-navy); }
         
         .cart-action-buttons {
             display: grid;
@@ -248,24 +250,26 @@
             gap: 12px;
         }
         .btn-outline {
-            background: #FFFFFF; border: 1px solid #0B1D3A; color: #0B1D3A; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center;
+            background: #FFFFFF; border: 1px solid var(--sk-navy); color: var(--sk-navy); padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center;
         }
         .btn-primary {
-            background: #007AFF; border: none; color: #FFFFFF; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center;
+            background: #2ECC71; border: none; color: #FFFFFF; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center;
         }
-        .btn-primary:hover { background: #0056B3; }
+        .btn-primary:hover { background: #27AE60; }
 
         .footer {
-            background-color: #EFEAE2; color: #5A5855; padding: 50px 20px; border-top: 1px solid #ECE7E1; margin-top: 40px;
+            background-color: var(--sk-navy); color: #A0AEC0; padding: 40px 20px; border-top: 4px solid var(--sk-orange); margin-top: 50px;
         }
         .footer-content {
             max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
         }
-        .footer-section h3 {
-            color: #2D2D2D; margin-top: 0; margin-bottom: 15px; font-size: 1.1rem;
-        }
-        .footer-section p {
-            margin: 8px 0; color: #6E6C69; font-size: 0.9rem; line-height: 1.6;
+        .footer-section h3 { color: #FFFFFF; margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; }
+        .footer-section p { margin: 8px 0; color: #A0AEC0; font-size: 0.9rem; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr)!important; gap: 10px; padding: 0 10px; }
+            .filter-bar { flex-direction: column; align-items: stretch; }
+            .search-action-btn { width: 100%; }
         }
     </style>
 </head>
@@ -275,23 +279,21 @@
         🔥 ช่างและผู้รับเหมาในเขตปากช่อง-เขาใหญ่ สั่งซื้อสเปกล็อตใหญ่ ขอราคาส่งพิเศษได้ทาง LINE!
     </div>
 
-    <!-- Widget ตะกร้าลอยมุมขวาบน (แบบรูปที่ 2) -->
+    <!-- Widget ตะกร้าลอยมุมขวาบน -->
     <div class="floating-cart-widget" onclick="openCartModal()">
         <div style="font-size: 1.3rem;">🛒</div>
         <div style="font-size: 0.8rem; font-weight: 600; color: #2D2D2D;">ตะกร้า</div>
-        <div style="font-size: 0.8rem; color: #C58940;" id="widgetCartCount">(0)</div>
+        <div style="font-size: 0.8rem; color: var(--sk-orange);" id="widgetCartCount">(0)</div>
     </div>
 
-    <!-- หน้าต่างป๊อปอัปตะกร้าสินค้า (Modal เหมือนรูปที่ 1) -->
+    <!-- ป๊อปอัปตะกร้าสินค้า Modal -->
     <div class="cart-modal-overlay" id="cartModalOverlay">
         <div class="cart-modal-container">
             <div class="cart-modal-header">
                 <span id="cartModalTitle">สินค้าในตะกร้า (0 รายการ)</span>
                 <button class="cart-close-btn" onclick="closeCartModal()">✕</button>
             </div>
-            <div class="cart-modal-body" id="cartModalBody">
-                <!-- รายการสินค้าจะถูกเพิ่มเข้ามาตรงนี้อัตโนมัติ -->
-            </div>
+            <div class="cart-modal-body" id="cartModalBody"></div>
             <div class="cart-modal-footer">
                 <div class="cart-total-row">
                     <div>
@@ -302,65 +304,58 @@
                 </div>
                 <div class="cart-action-buttons">
                     <button class="btn-outline" onclick="closeCartModal()">เลือกซื้อสินค้าเพิ่ม</button>
-                    <button class="btn-primary" onclick="checkoutCart()">เริ่มการสั่งซื้อ</button>
+                    <button class="btn-primary" onclick="checkoutCart()">🟢 เริ่มการสั่งซื้อผ่าน LINE</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="header" style="display: flex; align-items: center; gap: 20px;">
-        <img src="/static/sk.jpg" alt="โลโก้ SK" style="width: 70px; height: 70px; border-radius: 12px;">
-        <div>
-            <h1 style="margin-bottom: 4px;">หจก.ร้านไฟฟ้าแสงคูณ</h1>
-            <div class="subtitle">ศูนย์รวมอุปกรณ์ไฟฟ้า ท่อร้อยสายและสายไฟมาตรฐาน มอก. ปลีก-ส่ง</div>
+    <!-- ส่วนหัวโลโก้ร้าน -->
+    <div class="main-header">
+        <div class="brand-box">
+            <img src="/static/sk.jpg" alt="โลโก้ SK">
+            <div class="brand-title">
+                <h1>หจก.ไฟฟ้าแสงคูณ</h1>
+                <div class="brand-subtitle">ศูนย์รวมอุปกรณ์ไฟฟ้าและสายไฟมาตรฐาน มอก. ปลีก-ส่ง</div>
+            </div>
+        </div>
+        <div style="font-size: 0.9rem; color: #5A5855;">
+            📦 สต็อกแน่นพร้อมส่ง | ออกใบกำกับภาษีได้
         </div>
     </div>
 
-    <div class="info-bar">
-        <div class="info-item">🚚 จัดส่งด่วนทั่วไทย</div>
-        <div class="info-item">📦 มีสต็อกสินค้าหน้าร้านรับสินค้าทันที</div>
-        <div class="info-item">🧾 ออกใบกำกับภาษี / ใบเสนอราคาได้</div>
+    <!-- แถบกรองค้นหาสไตล์เว็บมืออาชีพ (ตามแบบที่คุณชอบ) -->
+    <div class="filter-bar-container">
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label>ค้นหาชื่อสินค้า / สเปก</label>
+                <input type="text" id="searchInput" class="filter-input" placeholder="พิมพ์ชื่อสายไฟ, เบรกเกอร์...">
+            </div>
+            <div class="filter-group">
+                <label>หมวดหมู่สินค้า</label>
+                <select id="categorySelect" class="filter-select">
+                    <option value="all">-- ทุกหมวดหมู่ --</option>
+                    <option value="wire">สายไฟ</option>
+                    <option value="pipe">ท่อร้อยสาย</option>
+                    <option value="breaker">เบรกเกอร์</option>
+                    <option value="consumer_unit">ตู้คอนซูเมอร์</option>
+                </select>
+            </div>
+            <button onclick="applyFilters()" class="search-action-btn">🔍 ค้นหา</button>
+        </div>
     </div>
-
-    <!-- แถบเลือกหมวดหมู่สินค้าแบบ 2 ชั้น -->
-    <div class="category-menu">
-        <a href="/?cat=all" class="cat-btn {% if current_cat == 'all' %}active{% endif %}">ทั้งหมด</a>
-        <a href="/?cat=wire" class="cat-btn {% if current_cat == 'wire' %}active{% endif %}">สายไฟ</a>
-        <a href="/?cat=pipe" class="cat-btn {% if current_cat == 'pipe' %}active{% endif %}">ท่อร้อยสาย</a>
-        <a href="/?cat=breaker" class="cat-btn {% if current_cat == 'breaker' %}active{% endif %}">เบรกเกอร์</a>
-        <a href="/?cat=consumer_unit" class="cat-btn {% if current_cat == 'consumer_unit' %}active{% endif %}">ตู้คอนซูเมอร์</a>
-        <a href="/?cat=load_center_3p" class="cat-btn {% if current_cat == 'load_center_3p' %}active{% endif %}">ตู้โหลดเซ็นเตอร์3P</a>
-        <a href="/?cat=switch_outlet" class="cat-btn {% if current_cat == 'switch_outlet' %}active{% endif %}">สวิตช์-เต้ารับ</a>
-        <a href="/?cat=lighting" class="cat-btn {% if current_cat == 'lighting' %}active{% endif %}">โคมไฟ</a>
-        <a href="/?cat=magnetic_contactor" class="cat-btn {% if current_cat == 'magnetic_contactor' %}active{% endif %}">แมกเนติก</a>
-        <a href="/?cat=industry_equipment" class="cat-btn {% if current_cat == 'industry_equipment' %}active{% endif %}">อุปกรณ์ไฟฟ้าโรงงาน</a>
-        <a href="/?cat=cable_by_order" class="cat-btn {% if current_cat == 'cable_by_order' %}active{% endif %}">สายไฟสั่งตัดพิเศษ</a>
-        <a href="/?cat=mdb" class="cat-btn {% if current_cat == 'mdb' %}active{% endif %}">ตู้MDBสั่งประกอบ</a>
-    </div>
-
-    <!-- ช่องค้นหา -->
-    <div style="max-width: 1200px; margin: 15px auto; padding: 0 20px; display: flex; gap: 10px; flex-wrap: wrap;">
-        <input type="text" id="searchInput" placeholder="🔍 ค้นหาชื่อสินค้า / สายไฟ (เช่น vaf, thw, เบรกเกอร์)..." 
-               style="flex: 1; min-width: 250px; padding: 14px 20px; font-size: 1rem; border: 1px solid #ECE7E1; border-radius: 12px; background-color: #FFFFFF; outline: none;">
-        <button onclick="copyProductList()" 
-                style="background-color: #34495E; color: white; border: none; padding: 0 20px; border-radius: 12px; font-size: 0.9rem; font-weight: 500; cursor: pointer;">
-            📋 คัดลอกรายการที่แสดงเพื่อส่ง LINE
-        </button>
-    </div>
-
-    <div class="section-title">🔥 สินค้าขายดี / แนะนำสำหรับช่างผู้รับเหมา</div>
 
     <!-- ตารางสินค้า Grid 4 คอลัมน์ -->
-    <div class="product-grid">
+    <div class="product-grid" id="productGrid">
         {% for product in products %}
-        <div class="product-card" data-name="{{ product.name | lower }}" data-price="{{ product.price }}">
+        <div class="product-card" data-name="{{ product.name | lower }}" data-category="{{ product.category }}" data-price="{{ product.price }}">
             <div>
                 <span style="position: absolute; top: 12px; left: 12px; background: rgba(46, 204, 113, 0.9); color: white; font-size: 0.7rem; padding: 3px 8px; border-radius: 6px; font-weight: 500; z-index: 2;">มอก. แท้</span>
                 <a href="/product/{{ loop.index0 }}">
                     <img src="{{ product.img }}" alt="{{ product.name }}">
                 </a>
                 <div class="product-name">
-                    <a href="/product/{{ loop.index0 }}" style="text-decoration: none; color: #333333;">{{ product.name }}</a>
+                    <a href="/product/{{ loop.index0 }}" style="text-decoration: none; color: #2D2D2D;">{{ product.name }}</a>
                 </div>
             </div>
             <div>
@@ -378,24 +373,19 @@
         </div>
     </div>
 
+    <!-- Footer โทนสีน้ำเงิน SK -->
     <div class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>ติดต่อเรา</h3>
-                <p>📍 <strong>คลังสินค้า:</strong> อำเภอปากช่อง จังหวัดนครราชสีมา</p>
-                <a href="https://maps.app.goo.gl/eojMTLoHWLQGj4BZ7" target="_blank" style="display: inline-block; background-color: #4285F4; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; margin-top: 10px; font-weight: bold;">
-                    📍 นำทางด้วย Google Maps
-                </a>
-                <p>📞 <strong>เบอร์โทรศัพท์:</strong> 081-966-7878 (ติดต่อฝ่ายขาย)</p>
-                <p>⏰ <strong>เวลาทำการ:</strong> เปิดบริการทุกวันจันทร์-เสาร์ (08:00 - 17:00 น.)</p>
+                <h3>หจก.ไฟฟ้าแสงคูณ (ปากช่อง)</h3>
+                <p>📍 ที่ตั้ง: อำเภอปากช่อง จังหวัดนครราชสีมา</p>
+                <p>📞 เบอร์โทรศัพท์: 081-966-7878 (ฝ่ายขาย)</p>
+                <p>⏰ เวลาทำการ: เปิดบริการทุกวัน จันทร์ - เสาร์ (08:00 - 17:00 น.)</p>
             </div>
             <div class="footer-section">
-                <h3>บริการสำหรับผู้รับเหมาและเจ้าของบ้าน</h3>
+                <h3>บริการและมาตรฐานของเรา</h3>
                 <p>• บริการจัดส่งอุปกรณ์ไฟฟ้าด่วนเข้าไซต์งานในพื้นที่ปากช่องและใกล้เคียง</p>
-                <p>• มารับสินค้าหน้าร้าน และตรวจสอบได้ด้วยตนเองที่คลังสินค้าปากช่อง</p>
-                <p>• สามารถส่งรายการสเปกของเพื่อขอราคา ขายส่งล็อตใหญ่ได้ทาง LINE</p>
-                <p>• มีวิศวกรไฟฟ้าให้บริการให้คำปรึกษาประจำร้าน</p>
-                <p>• ให้บริการออกแบบระบบไฟฟ้า-พร้อมเซ็นต์รับรองตามขอบเขตงาน</p>
+                <p>• ออกใบกำกับภาษีเต็มรูปแบบ และทำใบเสนอราคาสำหรับผู้รับเหมา</p>
             </div>
         </div>
     </div>
@@ -404,9 +394,7 @@
         let cart = [];
 
         function addToCart(name, priceStr, img) {
-            // แปลงราคาจากสตริงเช่น "1,200" ให้เป็นตัวเลข
             let cleanPrice = parseFloat(priceStr.toString().replace(/,/g, '')) || 0;
-            
             let existingItem = cart.find(item => item.name === name);
             if (existingItem) {
                 existingItem.qty += 1;
@@ -496,16 +484,21 @@
             });
         }
 
-        // ระบบค้นหา
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            var searchTerm = e.target.value.toLowerCase().trim();
+        function applyFilters() {
+            var searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            var selectedCat = document.getElementById('categorySelect').value;
             var productCards = document.querySelectorAll('.product-grid .product-card');
             var noProductMsg = document.getElementById('no-product-message');
             var visibleCount = 0;
 
             productCards.forEach(function(card) {
                 var productName = card.getAttribute('data-name') || '';
-                if (productName.includes(searchTerm)) {
+                var productCat = card.getAttribute('data-category') || '';
+                
+                var matchSearch = productName.includes(searchTerm);
+                var matchCat = (selectedCat === 'all' || productCat === selectedCat);
+
+                if (matchSearch && matchCat) {
                     card.style.display = 'flex';
                     visibleCount++;
                 } else {
@@ -518,34 +511,11 @@
             } else {
                 noProductMsg.style.display = 'none';
             }
-        });
-
-        function copyProductList() {
-            var visibleCards = document.querySelectorAll('.product-grid .product-card');
-            var textToCopy = "🛒 รายการสินค้าที่สนใจจากร้านไฟฟ้าแสงคูณ:\n";
-            var count = 0;
-
-            visibleCards.forEach(function(card) {
-                if (card.style.display !== 'none') {
-                    var n = card.querySelector('.product-name').innerText.trim();
-                    var p = card.querySelector('.product-price').innerText.trim();
-                    textToCopy += `- ${n} (${p})\n`;
-                    count++;
-                }
-            });
-
-            if (count === 0) {
-                alert("ไม่พบรายการสินค้าที่แสดงอยู่");
-                return;
-            }
-
-            textToCopy += "\nรบกวนสอบถามราคารวมและค่าจัดส่งครับ/ค่ะ";
-
-            navigator.clipboard.writeText(textToCopy).then(function() {
-                alert("📋 คัดลอกรายการสินค้าสำเร็จ! นำไปวางในแชท LINE เพื่อส่งให้ร้านได้เลยครับ");
-                window.open('https://lin.ee/ShzPAq2', '_blank');
-            });
         }
+
+        // ค้นหาแบบเรียลไทม์เวลาพิมพ์ด้วย
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('categorySelect').addEventListener('change', applyFilters);
     </script>
 </body>
 </html>
