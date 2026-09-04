@@ -17,7 +17,6 @@
             --border-color: #ECE7E1;
         }
 
-        /* ลายน้ำโลโก้จางๆ พื้นหลัง */
         body::before {
             content: "";
             position: fixed;
@@ -75,8 +74,8 @@
         .product-price-box {
             font-size: 2.2rem; color: var(--sk-orange); font-weight: 600; margin-bottom: 20px;
         }
-        
-        /* สไตล์กล่องข้อมูลร้านและปุ่มแชร์แบบในรูปตัวอย่าง */
+
+        /* ตารางข้อมูลร้านค้าและปุ่มไอคอนติดต่อ */
         .shop-info-box {
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
@@ -88,21 +87,63 @@
         .shop-info-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            align-items: center;
+            margin-bottom: 12px;
         }
         .shop-info-row span:first-child {
             color: #8C8A87;
         }
-        .shop-info-row span:last-child {
-            font-weight: 500;
-            color: #2D2D2D;
-        }
 
-        /* ส่วนกล่องลิงก์แชร์และปุ่ม Copy */
-        .share-box {
+        /* กลุ่มปุ่มไอคอนติดต่อ (โทร, Messenger, LINE) */
+        .contact-icons-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .contact-icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+        .contact-icon-btn:hover {
+            transform: scale(1.1);
+        }
+        .icon-tel { background-color: #0084FF; } /* ฟ้าโทร/แมสเซนเจอร์ */
+        .icon-msg { background-color: #0099FF; } /* ฟ้า Messenger */
+        .icon-line { background-color: #00B900; } /* เขียว LINE */
+
+        /* ส่วนแชร์ลิงก์และกล่อง Copy */
+        .share-section {
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px dashed var(--border-color);
+        }
+        .social-share-icons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .social-share-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #2D2D2D;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
         }
         .share-input-group {
             display: flex;
@@ -123,7 +164,7 @@
             color: #4A4A4A;
             border: 1px solid var(--border-color);
             border-left: none;
-            padding: 0 16px;
+            padding: 0 18px;
             font-weight: 600;
             font-size: 0.85rem;
             border-radius: 0 6px 6px 0;
@@ -183,34 +224,49 @@
             
             <div class="product-price-box">฿{{ product.price }} บาท</div>
 
-            <!-- ปุ่มสั่งซื้อผ่าน LINE -->
+            <!-- ปุ่มสั่งซื้อหลักผ่าน LINE -->
             <a href="https://lin.ee/ShzPAq2" target="_blank" class="buy-btn">
                 🟢 สั่งซื้อ / สอบถามรายละเอียดผ่าน LINE
             </a>
 
-            <!-- ข้อมูลร้านค้าและสถานะสินค้า (แบบในรูปตัวอย่าง) -->
+            <!-- ข้อมูลร้านค้าและปุ่มไอคอนติดต่อ (โทร, Messenger, LINE) แบบในรูปตัวอย่าง -->
             <div class="shop-info-box">
                 <div class="shop-info-row">
-                    <span>สถานะการยืนยัน</span>
-                    <span style="color: #27AE60;">✓ ร้านค้านี้ยืนยันตัวตนแล้ว</span>
+                    <span>คุยกับร้านค้า</span>
+                    <div class="contact-icons-group">
+                        <!-- ปุ่มโทร (ใส่เบอร์โทรของคุณตรง tel:) -->
+                        <a href="tel:0819667878" class="contact-icon-btn icon-tel" title="โทรด่วน">📞</a>
+                        <!-- ปุ่ม Messenger (ใส่ลิงก์เพจ/แชทของคุณตรง href) -->
+                        <a href="#" target="_blank" class="contact-icon-btn icon-msg" title="Facebook Messenger">💬</a>
+                        <!-- ปุ่ม LINE (ใส่ลิงก์ LINE ของคุณตรง href) -->
+                        <a href="https://lin.ee/ShzPAq2" target="_blank" class="contact-icon-btn icon-line" title="LINE ร้าน">💚</a>
+                    </div>
                 </div>
                 <div class="shop-info-row">
-                    <span>หมวดหมู่สินค้า</span>
+                    <span>หมวดหมู่</span>
                     <span style="color: #C58940;">อุปกรณ์ไฟฟ้าและสายไฟ มอก.</span>
                 </div>
                 <div class="shop-info-row">
-                    <span>สภาพสินค้า</span>
+                    <span>สภาพ</span>
                     <span>สินค้าใหม่มือ 1</span>
                 </div>
                 <div class="shop-info-row">
                     <span>สถานะสินค้า</span>
-                    <span style="color: #27AE60; font-weight: 600;">พร้อมส่ง (มีสต็อกหน้าร้าน)</span>
+                    <span style="color: #27AE60; font-weight: 600;">พร้อมส่ง</span>
                 </div>
             </div>
 
-            <!-- กล่องแชร์ลิงก์และปุ่ม Copy แบบในรูปตัวอย่าง -->
-            <div class="share-box">
-                <span style="font-size: 0.85rem; color: #8C8A87; font-weight: 500;">คัดลอกลิงก์หน้านี้เพื่อแชร์:</span>
+            <!-- ส่วนแชร์ลิงก์ (Facebook, X, LINE และช่อง Copy) -->
+            <div class="share-section">
+                <span style="font-size: 0.85rem; color: #8C8A87; font-weight: 500;">Share :</span>
+                <div class="social-share-icons">
+                    <!-- ปุ่มแชร์ Facebook -->
+                    <a href="#" target="_blank" class="social-share-icon" style="background: #1877F2;" title="แชร์ลง Facebook">f</a>
+                    <!-- ปุ่มแชร์ X (Twitter) -->
+                    <a href="#" target="_blank" class="social-share-icon" style="background: #000000;" title="แชร์ลง X">𝕏</a>
+                    <!-- ปุ่มแชร์ LINE -->
+                    <a href="#" target="_blank" class="social-share-icon" style="background: #00B900;" title="แชร์ลง LINE">L</a>
+                </div>
                 <div class="share-input-group">
                     <input type="text" id="shareLink" class="share-input" readonly>
                     <button onclick="copyShareLink()" class="copy-btn">COPY</button>
@@ -246,18 +302,15 @@
         </div>
     </div>
 
-    <!-- สคริปต์สำหรับใส่ลิงก์ปัจจุบันลงในช่องกรอกและกดปุ่ม Copy ได้จริง -->
     <script>
         document.getElementById('shareLink').value = window.location.href;
 
         function copyShareLink() {
             var copyText = document.getElementById("shareLink");
             copyText.select();
-            copyText.setSelectionRange(0, 99999); // สำหรับมือถือ
+            copyText.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(copyText.value).then(function() {
-                alert("📋 คัดลอกลิงก์สินค้าสำเร็จ! สามารถนำไปส่งต่อให้ลูกค้าหรือเพื่อนได้เลยครับ");
-            }, function(err) {
-                alert("เกิดข้อผิดพลาดในการคัดลอก");
+                alert("📋 คัดลอกลิงก์สินค้าสำเร็จ!");
             });
         }
     </script>
