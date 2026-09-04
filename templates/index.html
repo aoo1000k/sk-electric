@@ -122,7 +122,10 @@
             font-size: 0.95rem; font-weight: 500; color: #333333; margin: 12px 0 4px 0; height: 40px; overflow: hidden; line-height: 1.4;
         }
         .product-price {
-            font-size: 1.05rem; color: #C58940; font-weight: 600; margin-bottom: 12px;
+            font-size: 1.05rem; color: #C58940; font-weight: 600; margin-bottom: 8px;
+        }
+        .variation-select {
+            width: 100%; padding: 8px 10px; font-size: 0.85rem; border: 1px solid #CBD5E1; border-radius: 8px; margin-bottom: 10px; background: #F8FAFC; outline: none; color: #2D2D2D; font-family: inherit; cursor: pointer;
         }
 
         .card-btn-group {
@@ -156,8 +159,8 @@
             cursor: pointer;
         }
 
-        /* ป๊อปอัปเลือกตัวเลือกสินค้าก่อนลงตะกร้า (Shopee Style Modal) */
-        .variant-modal-overlay, .cart-modal-overlay {
+        /* ป๊อปอัปตะกร้าสินค้า (Modal) */
+        .cart-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.5);
@@ -166,9 +169,9 @@
             align-items: center;
             z-index: 2000;
         }
-        .cart-modal-container, .variant-modal-container {
+        .cart-modal-container {
             background: #FFFFFF;
-            width: 90%; max-width: 500px;
+            width: 90%; max-width: 650px;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -178,42 +181,24 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .cart-modal-header, .variant-modal-header {
+        .cart-modal-header {
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #ECE7E1;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: #0B1D3A;
         }
-        .cart-close-btn, .variant-close-btn {
+        .cart-close-btn {
             background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #2D2D2D;
         }
-        .cart-modal-body, .variant-modal-body {
+        .cart-modal-body {
             padding: 20px;
             max-height: 350px;
             overflow-y: auto;
         }
-        
-        /* สไตล์ตัวเลือกสินค้าใน Modal */
-        .variant-item-option {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            border: 2px solid #ECE7E1;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .variant-item-option:hover, .variant-item-option.selected {
-            border-color: var(--sk-orange);
-            background: #FDFBF7;
-        }
-
         .cart-item-row {
             display: flex;
             align-items: center;
@@ -235,7 +220,7 @@
         .delete-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #94A3B8; margin-left: 10px; }
         .delete-btn:hover { color: #EF4444; }
 
-        .cart-modal-footer, .variant-modal-footer {
+        .cart-modal-footer {
             padding: 20px;
             background: #F8FAFC;
             border-top: 1px solid #ECE7E1;
@@ -292,22 +277,6 @@
         <div style="font-size: 1.3rem;">🛒</div>
         <div style="font-size: 0.8rem; font-weight: 600; color: #2D2D2D;">ตะกร้า</div>
         <div style="font-size: 0.8rem; color: #C58940;" id="widgetCartCount">(0)</div>
-    </div>
-
-    <!-- Modal: เลือกตัวเลือกสินค้าก่อนลงตะกร้า (สไตล์ Shopee) -->
-    <div class="variant-modal-overlay" id="variantModalOverlay">
-        <div class="variant-modal-container">
-            <div class="variant-modal-header">
-                <span id="variantModalTitle">เลือกตัวเลือกสินค้า</span>
-                <button class="variant-close-btn" onclick="closeVariantModal()">✕</button>
-            </div>
-            <div class="variant-modal-body" id="variantModalBody">
-                <!-- ตัวเลือกจะถูกสร้างด้วย JavaScript ตรงนี้ -->
-            </div>
-            <div class="variant-modal-footer">
-                <button class="btn-primary" style="width: 100%;" onclick="confirmAddToCart()">ยืนยันเพิ่มลงตะกร้า</button>
-            </div>
-        </div>
     </div>
 
     <!-- ป๊อปอัปตะกร้าสินค้า Modal -->
@@ -389,16 +358,19 @@
                 </div>
             </div>
             <div>
-                <div class="product-price">฿{{ product.price }}</div>
+                <div class="product-price" id="price-{{ loop.index0 }}">฿{{ product.price }}</div>
                 
+                {% if product.has_variations %}
+                <select class="variation-select" id="var-{{ loop.index0 }}" onchange="updatePrice('{{ loop.index0 }}', this)">
+                    {% for v in product.variations %}
+                    <option value="{{ v.price }}" data-name="{{ v.name }}">{{ v.name }} (฿{{ v.price }})</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+
                 <div class="card-btn-group">
                     <a href="https://lin.ee/ShzPAq2" target="_blank" class="line-btn">🟢 สั่งซื้อ LINE</a>
-                    
-                    {% if product.has_variations %}
-                    <button class="add-cart-btn" onclick='openVariantModal("{{ product.name }}", "{{ product.img }}", {{ product.variations | tojson | safe }})'>🛒 เพิ่ม</button>
-                    {% else %}
-                    <button class="add-cart-btn" onclick='addToCart("{{ product.name }}", "{{ product.price }}", "{{ product.img }}")'>🛒 เพิ่ม</button>
-                    {% endif %}
+                    <button class="add-cart-btn" onclick="addVariationToCart('{{ product.name }}', '{{ loop.index0 }}', '{{ product.img }}', '{{ product.has_variations | lower }}')">🛒 เพิ่ม</button>
                 </div>
             </div>
         </div>
@@ -433,68 +405,33 @@
 
     <script>
         let cart = [];
-        let currentSelectedVariant = null;
 
-        // เปิด Modal เลือกตัวเลือกสินค้า (ฟีล Shopee)
-        function openVariantModal(productName, productImg, variations) {
-            let modalBody = document.getElementById('variantModalBody');
-            document.getElementById('variantModalTitle').innerText = 'เลือกตัวเลือก: ' + productName;
-            modalBody.innerHTML = '';
-
-            currentSelectedVariant = null;
-
-            variations.forEach((v, idx) => {
-                let opt = document.createElement('div');
-                opt.className = 'variant-item-option';
-                if (idx === 0) {
-                    opt.classList.add('selected');
-                    currentSelectedVariant = { name: productName + ' (' + v.name + ')', price: parseFloat(v.price.toString().replace(/,/g, '')) || 0, img: productImg };
-                }
-
-                opt.innerHTML = `
-                    <span style="font-weight: 500; color: #2D2D2D;">${v.name}</span>
-                    <span style="font-weight: 600; color: var(--sk-orange);">฿${v.price}</span>
-                `;
-
-                opt.onclick = function() {
-                    document.querySelectorAll('.variant-item-option').forEach(el => el.classList.remove('selected'));
-                    opt.classList.add('selected');
-                    currentSelectedVariant = { name: productName + ' (' + v.name + ')', price: parseFloat(v.price.toString().replace(/,/g, '')) || 0, img: productImg };
-                };
-
-                modalBody.appendChild(opt);
-            });
-
-            document.getElementById('variantModalOverlay').style.display = 'flex';
+        function updatePrice(index, selectElem) {
+            let selectedPrice = selectElem.value;
+            document.getElementById('price-' + index).innerText = '฿' + selectedPrice;
         }
 
-        function closeVariantModal() {
-            document.getElementById('variantModalOverlay').style.display = 'none';
-        }
+        function addVariationToCart(name, index, img, hasVariations) {
+            let finalName = name;
+            let finalPriceStr = "";
 
-        function confirmAddToCart() {
-            if (!currentSelectedVariant) return;
-
-            let existingItem = cart.find(item => item.name === currentSelectedVariant.name);
-            if (existingItem) {
-                existingItem.qty += 1;
+            if (hasVariations === 'true') {
+                let selectElem = document.getElementById('var-' + index);
+                let selectedOption = selectElem.options[selectElem.selectedIndex];
+                let variantName = selectedOption.getAttribute('data-name');
+                finalPriceStr = selectElem.value;
+                finalName = name + " (" + variantName + ")";
             } else {
-                cart.push({ name: currentSelectedVariant.name, price: currentSelectedVariant.price, img: currentSelectedVariant.img, qty: 1 });
+                let priceEl = document.getElementById('price-' + index);
+                finalPriceStr = priceEl.innerText.replace('฿', '').trim();
             }
 
-            closeVariantModal();
-            updateCartUI();
-            openCartModal();
-        }
-
-        // สำหรับสินค้าปกติไม่มีตัวเลือกย่อย
-        function addToCart(name, priceStr, img) {
-            let cleanPrice = parseFloat(priceStr.toString().replace(/,/g, '')) || 0;
-            let existingItem = cart.find(item => item.name === name);
+            let cleanPrice = parseFloat(finalPriceStr.toString().replace(/,/g, '')) || 0;
+            let existingItem = cart.find(item => item.name === finalName);
             if (existingItem) {
                 existingItem.qty += 1;
             } else {
-                cart.push({ name: name, price: cleanPrice, img: img, qty: 1 });
+                cart.push({ name: finalName, price: cleanPrice, img: img, qty: 1 });
             }
             updateCartUI();
             openCartModal();
