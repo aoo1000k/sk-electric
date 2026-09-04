@@ -44,7 +44,7 @@ electrical_products = [
     {
         "name": "เซอร์กิตเบรกเกอร์ ตราช้าง (CHANG) ขนาด 10A-30A", 
         "name_en": "CHANG Safety Breaker 10A-30A", 
-        "price": "120", 
+        "price": "55", 
         "img": "/static/chang.jpg", 
         "category": "breaker", 
         "has_variations": False,
