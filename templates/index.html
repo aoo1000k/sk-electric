@@ -11,16 +11,16 @@
     <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* เมนูหมวดหมู่สินค้าแบบ 2 ชั้น (แบ่งเป็น 2 แถวเรียงสวยๆ) */
+        /* แก้ไขให้เมนูหมวดหมู่สินค้าแสดงผลเป็น 2 ชั้น (แบ่งเป็น 2 แถวบน-ล่าง แน่นอน) */
         .category-menu {
             display: grid;
-            grid-template-rows: repeat(2, auto); /* บังคับให้แบ่งเป็น 2 แถวเป๊ะๆ */
-            grid-auto-flow: column; /* ให้ปุ่มเรียงต่อกันไปทางขวาแบบ 2 ชั้น */
+            grid-template-rows: repeat(2, auto); /* บังคับให้แบ่งเป็น 2 แถว */
+            grid-auto-flow: column; /* ให้ปุ่มเรียงสลับขึ้นแถวบนและแถวใหม่อัตโนมัติ */
             max-width: 1200px;
             margin: 30px auto 10px auto;
             padding: 0 20px 10px 20px;
             gap: 10px;
-            overflow-x: auto; /* เลื่อนดูแนวนอนได้ถ้าเมนูยาวเกินจอ */
+            overflow-x: auto; /* สามารถเลื่อนดูแนวนอนได้หากหน้าจอแคบเกินไป */
             scroll-behavior: smooth;
         }
 
@@ -42,6 +42,7 @@
             background: #D9C3B0;
             color: #2D2D2D;
         }
+
         /* บังคับการแสดงผลบนหน้าจอมือถือ (ความกว้างจอไม่เกิน 768px) */
         body::before {
             content: "";
@@ -138,32 +139,6 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-weight: 400;
-        }
-
-        /* เมนูหมวดหมู่สินค้าสไตล์มินิมอล */
-        .category-menu {
-            display: flex;
-            max-width: 1200px;
-            margin: 30px auto 10px auto;
-            padding: 0 20px;
-            gap: 10px;
-            overflow-x: auto;
-        }
-        .cat-btn {
-            padding: 8px 18px;
-            background: #EFEAE2;
-            border: none;
-            border-radius: 20px;
-            text-decoration: none;
-            color: #6E6C69;
-            font-size: 0.9rem;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-        }
-        .cat-btn:hover, .cat-btn.active {
-            background: #D9C3B0;
-            color: #2D2D2D;
         }
 
         /* รายการสินค้าแบบ Grid โค้งมน */
@@ -310,7 +285,7 @@
         <div class="info-item">🧾 ออกใบกำกับภาษี / ใบเสนอราคาได้</div>
     </div>
 
-    <!-- แถบเลือกหมวดหมู่มินิมอลแบบ 2 ชั้น (แก้ลิงก์ให้ไม่มีช่องว่างเพื่อไม่ให้เว็บพัง) -->
+    <!-- แถบเลือกหมวดหมู่สินค้าแบบ 2 ชั้น -->
     <div class="category-menu">
         <a href="/?cat=all" class="cat-btn {% if current_cat == 'all' %}active{% endif %}">ทั้งหมด</a>
         <a href="/?cat=wire" class="cat-btn {% if current_cat == 'wire' %}active{% endif %}">สายไฟ</a>
@@ -325,6 +300,7 @@
         <a href="/?cat=cable_by_order" class="cat-btn {% if current_cat == 'cable_by_order' %}active{% endif %}">สายไฟสั่งตัดพิเศษ</a>
         <a href="/?cat=mdb" class="cat-btn {% if current_cat == 'mdb' %}active{% endif %}">ตู้MDBสั่งประกอบ</a>
     </div>
+
     <!-- ช่องกรอกคำค้นหาสไตล์มินิมอล + ปุ่มคัดลอกรายการสำหรับผู้รับเหมา -->
     <div style="max-width: 1200px; margin: 15px auto; padding: 0 20px; display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="text" 
