@@ -205,7 +205,7 @@
         .about-badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .about-badge-item { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px; border-radius: 10px; text-align: center; font-weight: 500; color: #0B1D3A; font-size: 0.9rem; }
 
-        /* ดีไซน์ปุ่มลอยติดต่อด่วนมุมขวาล่างให้เนียนสวยสไตล์ LINE */
+        /* ปุ่มลอยติดต่อด่วนมุมขวาล่าง ดีไซน์พรีเมียม */
         .floating-contact-group {
             position: fixed;
             bottom: 25px; right: 25px;
@@ -367,7 +367,7 @@
         <a href="https://lin.ee/ShzPAq2" target="_blank" class="promo-btn">📋 ส่งรายการขอใบเสนอราคา</a>
     </div>
 
-    <!-- ปุ่มลอยติดต่อด่วนมุมขวาล่าง ดีไซน์พรีเมียมสไตล์ LINE และโทรด่วน -->
+    <!-- ปุ่มลอยติดต่อด่วนมุมขวาล่าง -->
     <div class="floating-contact-group">
         <a href="tel:0819667878" class="float-btn float-tel" title="โทรด่วนฝ่ายขาย">📞</a>
         <a href="https://lin.ee/ShzPAq2" target="_blank" class="float-btn float-line" title="แชท LINE ร้าน">💬</a>
@@ -701,7 +701,6 @@
             var count = 0;
 
             visibleCards.forEach(function(card) {
-                ไล่หาข้อมูลและแปลงสเปก...
                 if (card.style.display !== 'none') {
                     var n = card.querySelector('.product-name').innerText.trim();
                     var p = card.querySelector('.product-price').innerText.trim();
