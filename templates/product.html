@@ -59,6 +59,26 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* ปุ่มลอยติดต่อด่วนมุมขวาล่าง */
+        .floating-contact-group {
+            position: fixed;
+            bottom: 25px; right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 998;
+        }
+        .float-btn {
+            width: 55px; height: 55px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.5rem; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .float-btn:hover { transform: scale(1.1); }
+        .float-line { background-color: #00B900; }
+        .float-tel { background-color: #0084FF; }
+
         .navbar {
             background-color: #FFFFFF; border-bottom: 1px solid var(--border-color); padding: 15px 20px;
         }
@@ -171,6 +191,12 @@
             📍 ลูกค้าสามารถมาดูสินค้าจริงได้ที่หน้าร้าน <a href="https://maps.app.goo.gl/eojMTLoHWLQGj4BZ7" target="_blank">👉คลิกดูแผนที่ Google Maps ที่นี่เลยครับ</a> 🚚 มีบริการจัดส่งด่วนในเขตปากช่อง-เขาใหญ่
         </div>
         <div style="padding-left: 20px; font-weight: 500; white-space: nowrap;">📞 ฝ่ายขาย: 081-966-7878</div>
+    </div>
+
+    <!-- ปุ่มลอยติดต่อด่วนมุมขวาล่าง -->
+    <div class="floating-contact-group">
+        <a href="tel:0819667878" class="float-btn float-tel" title="โทรด่วนฝ่ายขาย">📞</a>
+        <a href="https://lin.ee/ShzPAq2" target="_blank" class="float-btn float-line" title="แชท LINE ร้าน">💬</a>
     </div>
 
     <div class="navbar">
