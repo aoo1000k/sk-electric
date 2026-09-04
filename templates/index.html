@@ -65,16 +65,12 @@
                 font-size: 0.95rem;
                 margin-bottom: 8px;
             }
-            .line-btn {
-                font-size: 0.75rem;
-                padding: 8px 4px;
-            }
         }
 
         body {
             font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
             background-color: #FAF6F0;
-            margin: 0; padding: 0 0 80px 0; /* เว้นพื้นที่ด้านล่างให้แถบตะกร้า */
+            margin: 0; padding: 0 0 90px 0;
             color: #4A4A4A;
         }
 
@@ -101,7 +97,6 @@
             background-color: #EFEAE2; color: #6E6C69; font-size: 0.85rem; padding: 6px 14px; border-radius: 20px;
         }
 
-        /* โซนสินค้าแนะนำพิเศษ (Featured Section) */
         .section-title {
             max-width: 1200px; margin: 30px auto 10px auto; padding: 0 20px;
             font-size: 1.3rem; font-weight: 600; color: #2D2D2D;
@@ -127,28 +122,30 @@
             font-size: 1.05rem; color: #C58940; font-weight: 600; margin-bottom: 10px;
         }
 
-        /* ปุ่มตะกร้าและสั่งซื้อ */
+        /* ดีไซน์ปุ่มสั่งซื้อ LINE (สีเขียว) และปุ่มเพิ่ม (สีเทาเข้ม) แบบในรูปตัวอย่าง */
         .card-btn-group {
             display: flex;
-            gap: 6px;
+            gap: 8px;
         }
         .line-btn {
-            flex: 1; text-align: center; background-color: #2ECC71; color: white; text-decoration: none; padding: 9px 4px; border-radius: 10px; font-weight: 500; font-size: 0.8rem; transition: background-color 0.2s;
+            flex: 1; text-align: center; background-color: #2ECC71; color: white; text-decoration: none; padding: 10px 6px; border-radius: 10px; font-weight: 500; font-size: 0.85rem; transition: background-color 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 4px;
         }
         .line-btn:hover { background-color: #27AE60; }
         
         .add-cart-btn {
-            background-color: #34495E; color: white; border: none; padding: 9px 12px; border-radius: 10px; font-weight: 500; font-size: 0.8rem; cursor: pointer; transition: background 0.2s;
+            background-color: #34495E; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;
+            display: flex; align-items: center; gap: 4px;
         }
         .add-cart-btn:hover { background-color: #2C3E50; }
 
-        /* แถบตะกร้าสินค้าลอยตัวด้านล่าง (Floating Cart Bar) */
+        /* แถบตะกร้าสินค้าลอยตัวด้านล่าง (สีน้ำเงินเข้มขรึมตามแบบ) */
         .floating-cart-bar {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
             background: #0B1D3A;
             color: white;
-            padding: 12px 20px;
+            padding: 14px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -157,22 +154,40 @@
             box-sizing: border-box;
         }
         .cart-info {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .checkout-cart-btn {
             background-color: #2ECC71;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: background 0.2s;
         }
         .checkout-cart-btn:hover {
             background-color: #27AE60;
+        }
+
+        /* ไอคอนตะกร้าลอยมุมขวาบน */
+        .floating-cart-widget {
+            position: fixed;
+            top: 100px; right: 0;
+            background: #FFFFFF;
+            border: 1px solid #ECE7E1;
+            border-right: none;
+            border-radius: 8px 0 0 8px;
+            padding: 10px 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            z-index: 999;
+            text-align: center;
+            cursor: pointer;
         }
 
         .footer {
@@ -193,6 +208,13 @@
 
     <div class="promo-banner">
         🔥 ช่างและผู้รับเหมาในเขตปากช่อง-เขาใหญ่ สั่งซื้อสเปกล็อตใหญ่ ขอราคาส่งพิเศษได้ทาง LINE!
+    </div>
+
+    <!-- Widget ตะกร้าลอยมุมขวาบน -->
+    <div class="floating-cart-widget" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});">
+        <div style="font-size: 1.3rem;">🛒</div>
+        <div style="font-size: 0.8rem; font-weight: 600; color: #2D2D2D;">ตะกร้า</div>
+        <div style="font-size: 0.8rem; color: #C58940;" id="widgetCartCount">(0)</div>
     </div>
 
     <div class="header" style="display: flex; align-items: center; gap: 20px;">
@@ -266,13 +288,13 @@
         </div>
     </div>
 
-    <!-- แถบตะกร้าสินค้าลอยตัวด้านล่าง (Interactive Quick Cart) -->
+    <!-- แถบตะกร้าสินค้าลอยตัวด้านล่าง (ตามแบบเป๊ะๆ) -->
     <div class="floating-cart-bar">
         <div class="cart-info">
             🛒 ตะกร้าสินค้า: <span id="cartCount">0</span> รายการ
         </div>
         <button class="checkout-cart-btn" onclick="checkoutCart()">
-            💬 สรุปยอดส่ง LINE
+            🟢 สรุปยอดส่ง LINE
         </button>
     </div>
 
@@ -299,20 +321,18 @@
     </div>
 
     <script>
-        // ระบบตะกร้าสินค้าจำลอง (Cart System)
         let cart = [];
 
         function addToCart(name, price) {
             cart.push({ name: name, price: price });
             document.getElementById('cartCount').innerText = cart.length;
-            
-            // เอฟเฟกต์แจ้งเตือนเล็กๆ
+            document.getElementById('widgetCartCount').innerText = '(' + cart.length + ')';
             alert("✅ เพิ่ม '" + name + "' ลงในตะกร้าเรียบร้อย!");
         }
 
         function checkoutCart() {
             if (cart.length === 0) {
-                alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณากดปุ่ม 'เพิ่ม' ที่สินค้าที่ต้องการก่อนครับ");
+                alert("🛒 ตะกร้าสินค้ายังว่างอยู่ กรุณากดปุ่ม '🛒 เพิ่ม' ที่สินค้าที่ต้องการก่อนครับ");
                 return;
             }
 
@@ -322,14 +342,12 @@
             });
             message += "\nรบกวนสรุปยอดรวมและค่าจัดส่งให้ด้วยครับ/ค่ะ";
 
-            // คัดลอกลงคลิปบอร์ดและเปิด LINE ทันที
             navigator.clipboard.writeText(message).then(function() {
                 alert("📋 คัดลอกรายการในตะกร้าสำเร็จ! ระบบจะพาท่านไปที่แชท LINE ให้กดวาง (Paste) ส่งให้ร้านได้เลยครับ");
                 window.open('https://lin.ee/ShzPAq2', '_blank');
             });
         }
 
-        // ระบบค้นหา
         document.getElementById('searchInput').addEventListener('input', function(e) {
             var searchTerm = e.target.value.toLowerCase().trim();
             var productCards = document.querySelectorAll('.product-grid .product-card');
@@ -353,7 +371,6 @@
             }
         });
 
-        // ฟังก์ชันคัดลอกรายการทั้งหมดเดิม
         function copyProductList() {
             var visibleCards = document.querySelectorAll('.product-grid .product-card');
             var textToCopy = "🛒 รายการสินค้าที่สนใจจากร้านไฟฟ้าแสงคูณ:\n";
