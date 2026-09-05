@@ -140,6 +140,26 @@
             color: #2D2D2D;
         }
 
+        /* กล่องตารางคู่มือเลือกสายไฟแบบใช้งานง่าย */
+        .guide-section {
+            max-width: 1200px; margin: 25px auto; padding: 0 20px;
+        }
+        .guide-box {
+            background: #FFFFFF; border: 1px solid #ECE7E1; border-radius: 16px; padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .guide-box h3 { color: #0B1D3A; margin-top: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
+        .guide-table {
+            width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left;
+        }
+        .guide-table th { background-color: #0B1D3A; color: white; padding: 10px 12px; font-weight: 500; }
+        .guide-table td { padding: 10px 12px; border-bottom: 1px solid #ECE7E1; color: #4A4A4A; }
+        .guide-table tr:hover { background-color: #F8FAFC; }
+        @media(max-width: 768px) {
+            .guide-table { font-size: 0.8rem; }
+            .guide-table th, .guide-table td { padding: 8px 6px; }
+        }
+
         .search-section {
             max-width: 1200px; margin: 15px auto; padding: 0 20px; display: flex; gap: 10px; flex-wrap: wrap;
         }
@@ -205,7 +225,7 @@
         .about-badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .about-badge-item { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px; border-radius: 10px; text-align: center; font-weight: 500; color: #0B1D3A; font-size: 0.9rem; }
 
-        /* ปุ่มลอยติดต่อด่วนมุมขวาล่าง ดีไซน์พรีเมียม */
+        /* ปุ่มลอยติดต่อด่วนมุมขวาล่าง */
         .floating-contact-group {
             position: fixed;
             bottom: 25px; right: 25px;
@@ -457,6 +477,51 @@
         <a href="/?cat=industry_equipment" class="cat-btn {% if current_cat == 'industry_equipment' %}active{% endif %}">อุปกรณ์ไฟฟ้าโรงงาน</a>
         <a href="/?cat=cable_by_order" class="cat-btn {% if current_cat == 'cable_by_order' %}active{% endif %}">สายไฟสั่งตัดพิเศษ</a>
         <a href="/?cat=mdb" class="cat-btn {% if current_cat == 'mdb' %}active{% endif %}">ตู้MDBสั่งประกอบ</a>
+    </div>
+
+    <!-- ⚡ คู่มือเลือกขนาดสายไฟและอุปกรณ์แบบดูง่ายสุดๆ (ไม่ซับซ้อน) -->
+    <div class="guide-section">
+        <div class="guide-box">
+            <h3>📖 คู่มือจับคู่สายไฟ & เบรกเกอร์ใช้งานง่าย (สำหรับช่างและเจ้าของบ้าน)</h3>
+            <div style="overflow-x: auto;">
+                <table class="guide-table">
+                    <thead>
+                        <tr>
+                            <th>ประเภทการใช้งาน / อุปกรณ์</th>
+                            <th>ขนาดสายไฟ มอก. ที่แนะนำ</th>
+                            <th>ขนาดเบรกเกอร์ (Circuit Breaker)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>💡 หลอดไฟ / พัดลม / ปลั๊กไฟทั่วไปในบ้าน</td>
+                            <td><strong>THW / VAF 1.5 หรือ 2.5 ตร.มม.</strong></td>
+                            <td>10A - 16A</td>
+                        </tr>
+                        <tr>
+                            <td>❄️ เครื่องปรับอากาศ (แอร์) 9,000 - 12,000 BTU</td>
+                            <td><strong>VAF / NYY 2.5 หรือ 4.0 ตร.มม.</strong></td>
+                            <td>16A - 20A</td>
+                        </tr>
+                        <tr>
+                            <td>❄️ เครื่องปรับอากาศ (แอร์) 18,000 - 24,000 BTUขึ้นไป</td>
+                            <td><strong>THW / NYY 4.0 หรือ 6.0 ตร.มม.</strong></td>
+                            <td>25A - 32A</td>
+                        </tr>
+                        <tr>
+                            <td>🚿 เครื่องทำน้ำอุ่น (3,500 - 4,500 วัตต์)</td>
+                            <td><strong>THW / NYY 4.0 ตร.มม. (มีสายดิน)</strong></td>
+                            <td>20A - 30A (รุ่นกันดูด RCBO)</td>
+                        </tr>
+                        <tr>
+                            <td>🔌 ปลั๊กพ่วงใช้งานหนัก / เดินสายเมนย่อย</td>
+                            <td><strong>THW / NYY 4.0 หรือ 6.0 ตร.มม.</strong></td>
+                            <td>32A - 50A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- ช่องค้นหาและปุ่มคัดลอกรายการส่ง LINE -->
